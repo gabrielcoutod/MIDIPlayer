@@ -17,6 +17,13 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JCheckBox;
+import javax.swing.JSlider;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class TelaPrincipal {
 
@@ -49,10 +56,14 @@ public class TelaPrincipal {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		// Frame code
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 914, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		// Notes panel code
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -120,19 +131,131 @@ public class TelaPrincipal {
 		checkBoxPause.setBounds(10, 282, 78, 21);
 		notesPanel.add(checkBoxPause);
 		
+		// Options Panel code
+		
 		JPanel optionsPanel = new JPanel();
 		optionsPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		optionsPanel.setBounds(194, 32, 228, 432);
 		panel.add(optionsPanel);
 		optionsPanel.setLayout(null);
 		
+		//TODO
+		// Import Max and Min of the sliders
+		// from the classes that handle that
+		
 		JLabel lblOptions = new JLabel("Op\u00E7\u00F5es");
 		lblOptions.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		lblOptions.setBounds(10, 10, 62, 23);
 		optionsPanel.add(lblOptions);
 		
+		// Labels and Slider for BPM
+		
+		JLabel lblBPM = new JLabel("BPM =");
+		lblBPM.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		lblBPM.setBounds(10, 46, 46, 23);
+		optionsPanel.add(lblBPM);
+		
+		JSlider sliderBPM = new JSlider();
+		
+		JLabel lblBPMValue = new JLabel("");
+		lblBPMValue.setLabelFor(sliderBPM);
+		lblBPMValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		lblBPMValue.setBounds(52, 46, 46, 23);
+		lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
+		optionsPanel.add(lblBPMValue);
+		
+		
+		sliderBPM.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
+			}
+		});
+		sliderBPM.setMinimum(50);
+		sliderBPM.setMaximum(1000);
+		sliderBPM.setBounds(10, 69, 200, 22);
+		optionsPanel.add(sliderBPM);
+		
+		
+
+		// Labels and Slider for Octave
+		
+		JSlider sliderOctave = new JSlider();
+		
+		JLabel lblOctaveValue = new JLabel("");
+		lblOctaveValue.setLabelFor(sliderOctave);
+		lblOctaveValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		lblOctaveValue.setBounds(64, 108, 55, 23);
+		lblOctaveValue.setText(Integer.toString(sliderOctave.getValue()));
+		optionsPanel.add(lblOctaveValue);
+		
+		JLabel lblOctave = new JLabel("Oitava = ");
+		lblOctave.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		lblOctave.setBounds(10, 108, 55, 23);
+		optionsPanel.add(lblOctave);
+		
+		
+		
+		sliderOctave.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lblOctaveValue.setText(Integer.toString(sliderOctave.getValue()));
+			}
+		});
+		sliderOctave.setValue(0);
+		sliderOctave.setMinimum(-5);
+		sliderOctave.setMaximum(5);
+		sliderOctave.setBounds(10, 141, 200, 22);
+		optionsPanel.add(sliderOctave);
+		
+		
+		// Labels and Slider for Volume
+
+		
+		JSlider sliderVolume = new JSlider();
+		
+		
+		JLabel lblVolumeValue = new JLabel("");
+		lblVolumeValue.setLabelFor(sliderVolume);
+		lblVolumeValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		lblVolumeValue.setBounds(64, 173, 62, 23);
+		lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
+		optionsPanel.add(lblVolumeValue);
+		
+		sliderVolume.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
+			}
+		});
+		sliderVolume.setValue(10);
+		sliderVolume.setBounds(10, 201, 200, 22);
+		optionsPanel.add(sliderVolume);
+		
+		JLabel lblVolume = new JLabel("Volume = ");
+		lblVolume.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		lblVolume.setBounds(10, 173, 62, 23);
+		optionsPanel.add(lblVolume);
+		
+		// Rest of the interface
+		
+		JButton btnUpdate = new JButton("Atualizar");
+		btnUpdate.setFont(new Font("Noto Sans", Font.PLAIN, 14));
+		btnUpdate.setBounds(39, 381, 124, 29);
+		optionsPanel.add(btnUpdate);
+		
+		JLabel lblInstruments = new JLabel("Instrumento");
+		lblInstruments.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		lblInstruments.setBounds(10, 260, 77, 23);
+		optionsPanel.add(lblInstruments);
+		
+		JComboBox comboBoxInstruments = new JComboBox();
+		comboBoxInstruments.setModel(new DefaultComboBoxModel(new String[] {"Agogo", "Piano", "Sinos", "Flauta", "\u00D3rg\u00E3o"}));
+		comboBoxInstruments.setBounds(97, 261, 113, 23);
+		optionsPanel.add(comboBoxInstruments);
+		
+		
+		//Song panel code
+		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 344, 22);
+		menuBar.setBounds(0, 0, 275, 22);
 		panel.add(menuBar);
 		
 		JMenu fileMenu = new JMenu("Arquivo");
