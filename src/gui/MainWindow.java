@@ -30,8 +30,10 @@ import java.util.Set;
 
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import gui.Help;
+import gui.About;
 
-public class TelaPrincipal {
+public class MainWindow {
 
 	private JFrame frame;
 
@@ -42,7 +44,7 @@ public class TelaPrincipal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaPrincipal window = new TelaPrincipal();
+					MainWindow window = new MainWindow();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +56,7 @@ public class TelaPrincipal {
 	/**
 	 * Create the application.
 	 */
-	public TelaPrincipal() {
+	public MainWindow() {
 		initialize();
 	}
 
@@ -360,7 +362,7 @@ public class TelaPrincipal {
 		optionsPanel.add(comboBoxInstruments);
 		
 		
-		//Song panel code
+		//Menu bar code
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 275, 22);
@@ -379,11 +381,25 @@ public class TelaPrincipal {
 		fileMenu.add(menuItemSaveMidi);
 		
 		JMenuItem menuItemHelp = new JMenuItem("Ajuda");
+		menuItemHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Help helpWindow = new Help();
+				helpWindow.createWindow();
+			}
+		});
 		menuBar.add(menuItemHelp);
 		
 		JMenuItem menuItemAbout = new JMenuItem("Sobre");
+		menuItemAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				About aboutWindow = new About();
+				aboutWindow.createWindow();
+			}
+		});
 		menuBar.add(menuItemAbout);
 		
+		
+		// Song panel code
 		JPanel songPanel = new JPanel();
 		songPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		songPanel.setBounds(432, 32, 443, 432);
