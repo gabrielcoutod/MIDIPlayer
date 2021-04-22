@@ -22,6 +22,12 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 
@@ -75,60 +81,162 @@ public class TelaPrincipal {
 		notesPanel.setBounds(0, 32, 184, 432);
 		panel.add(notesPanel);
 		notesPanel.setLayout(null);
-		
+
 		JLabel lblNotes = new JLabel("Nota");
 		lblNotes.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		lblNotes.setBounds(10, 10, 62, 23);
 		notesPanel.add(lblNotes);
-		
+
 		JButton btnAddNote = new JButton("Adicionar");
 		btnAddNote.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnAddNote.setBounds(27, 381, 124, 29);
 		notesPanel.add(btnAddNote);
-		
+
+
+		List<JCheckBox> checkBoxNotes = new ArrayList<JCheckBox>();
+
 		JCheckBox checkBoxC = new JCheckBox("C");
 		checkBoxC.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxC.setBounds(10, 39, 50, 21);
+		checkBoxC.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxC.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxC);
 		notesPanel.add(checkBoxC);
-		
+
 		JCheckBox checkBoxD = new JCheckBox("D");
 		checkBoxD.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxD.setBounds(10, 65, 50, 21);
+		checkBoxD.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxD.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxD);
 		notesPanel.add(checkBoxD);
-		
+
 		JCheckBox checkBoxE = new JCheckBox("E");
 		checkBoxE.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxE.setBounds(10, 97, 50, 21);
+		checkBoxE.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxE.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxE);
 		notesPanel.add(checkBoxE);
-		
+
 		JCheckBox checkBoxF = new JCheckBox("F");
 		checkBoxF.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxF.setBounds(10, 131, 50, 21);
+		checkBoxF.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxF.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxF);
 		notesPanel.add(checkBoxF);
-		
+
 		JCheckBox checkBoxG = new JCheckBox("G");
 		checkBoxG.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxG.setBounds(10, 162, 50, 21);
+		checkBoxG.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxG.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxG);
 		notesPanel.add(checkBoxG);
-		
+
 		JCheckBox checkBoxA = new JCheckBox("A");
 		checkBoxA.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxA.setBounds(10, 192, 50, 21);
+		checkBoxA.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxA.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxA);
 		notesPanel.add(checkBoxA);
-		
+
 		JCheckBox checkBoxB = new JCheckBox("B");
 		checkBoxB.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxB.setBounds(10, 222, 50, 21);
+		checkBoxB.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxB.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxB);
 		notesPanel.add(checkBoxB);
-		
+
 		JCheckBox checkBoxRandom = new JCheckBox("Aleat\u00F3ria");
 		checkBoxRandom.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxRandom.setBounds(10, 252, 96, 21);
+		checkBoxRandom.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxRandom.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxRandom);
 		notesPanel.add(checkBoxRandom);
-		
+
 		JCheckBox checkBoxPause = new JCheckBox("Pausa");
 		checkBoxPause.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		checkBoxPause.setBounds(10, 282, 78, 21);
+		checkBoxPause.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (JCheckBox checkBox: checkBoxNotes) {
+					checkBox.setSelected(false);
+				}
+				checkBoxPause.setSelected(true);
+			}
+		});
+		checkBoxNotes.add(checkBoxPause);
 		notesPanel.add(checkBoxPause);
 		
 		// Options Panel code
@@ -314,6 +422,30 @@ public class TelaPrincipal {
 		btnClean.setBounds(328, 123, 85, 36);
 		songPanel.add(btnClean);
 		
+		btnAddNote.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event){
+				if(checkBoxA.isSelected()) {
+					textSong.append("A");
+				} else if(checkBoxB.isSelected()) {
+					textSong.append("B");
+				} else if(checkBoxC.isSelected()) {
+					textSong.append("C");
+				} else if(checkBoxD.isSelected()) {
+					textSong.append("D");
+				} else if(checkBoxE.isSelected()) {
+					textSong.append("E");
+				} else if(checkBoxF.isSelected()) {
+					textSong.append("F");
+				} else if(checkBoxG.isSelected()) {
+					textSong.append("G");
+				} else if(checkBoxRandom.isSelected()) {
+					List<String> notesList = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
+					Random rand = new Random();
+				    String randomNote = notesList.get(rand.nextInt(notesList.size()));
+				    textSong.append(randomNote);
+				}
+			}
+		});
 		
 		
 	}
