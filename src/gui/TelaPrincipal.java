@@ -439,7 +439,7 @@ public class TelaPrincipal {
 				} else if(checkBoxG.isSelected()) {
 					textSong.append("G");
 				} else if(checkBoxRandom.isSelected()) {
-					List<String> notesList = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
+					List<String> notesList = Arrays.asList("A", "B", "C", "D", "E", "F", "G");
 					Random rand = new Random();
 				    String randomNote = notesList.get(rand.nextInt(notesList.size()));
 				    textSong.append(randomNote);
