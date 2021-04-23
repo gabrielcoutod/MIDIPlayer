@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JMenu;
 import javax.swing.JLabel;
@@ -19,19 +20,28 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JCheckBox;
 import javax.swing.JSlider;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import gui.Help;
 import gui.About;
+
 
 public class MainWindow {
 
@@ -362,43 +372,6 @@ public class MainWindow {
 		optionsPanel.add(comboBoxInstruments);
 		
 		
-		//Menu bar code
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 275, 22);
-		panel.add(menuBar);
-		
-		JMenu fileMenu = new JMenu("Arquivo");
-		menuBar.add(fileMenu);
-		
-		JMenuItem menuItemOpenTextFile = new JMenuItem("Abrir arquivo de texto");
-		fileMenu.add(menuItemOpenTextFile);
-		
-		JMenuItem menuItemSaveTextFile = new JMenuItem("Salvar em arquivo de texto");
-		fileMenu.add(menuItemSaveTextFile);
-		
-		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar m\u00FAsica");
-		fileMenu.add(menuItemSaveMidi);
-		
-		JMenuItem menuItemHelp = new JMenuItem("Ajuda");
-		menuItemHelp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Help helpWindow = new Help();
-				helpWindow.createWindow();
-			}
-		});
-		menuBar.add(menuItemHelp);
-		
-		JMenuItem menuItemAbout = new JMenuItem("Sobre");
-		menuItemAbout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				About aboutWindow = new About();
-				aboutWindow.createWindow();
-			}
-		});
-		menuBar.add(menuItemAbout);
-		
-		
 		// Song panel code
 		JPanel songPanel = new JPanel();
 		songPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
@@ -463,6 +436,96 @@ public class MainWindow {
 			}
 		});
 		
-		
+		//Menu bar code
+
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 275, 22);
+		panel.add(menuBar);
+
+		JMenu fileMenu = new JMenu("Arquivo");
+		menuBar.add(fileMenu);
+
+		JMenuItem menuItemOpenTextFile = new JMenuItem("Abrir arquivo de texto");
+		fileMenu.add(menuItemOpenTextFile);
+		menuItemOpenTextFile.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File("."));
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				int userSelection = fileChooser.showOpenDialog(frame);
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					try {
+						Scanner useDelimiter = new Scanner(fileChooser.getSelectedFile()).useDelimiter("\\Z");
+						String content = useDelimiter.next();
+						textSong.setText(content);
+						useDelimiter.close();
+					} catch (IOException  e1) {
+						JOptionPane.showMessageDialog(new JFrame(), "Couldn't Open File", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+
+		JMenuItem menuItemSaveTextFile = new JMenuItem("Salvar em arquivo de texto");
+		fileMenu.add(menuItemSaveTextFile);
+		menuItemSaveTextFile.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File("."));
+				fileChooser.setDialogTitle("Salvar");
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				int userSelection = fileChooser.showSaveDialog(frame);
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					String text = textSong.getText();
+					File file = fileChooser.getSelectedFile();
+					try {
+
+						if (!file.exists()) {
+							file.createNewFile();
+							BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
+							bw.write(text); 
+							bw.close();
+						} else {
+							int response = JOptionPane.showOptionDialog(new JFrame(), "Overwrite file?", "File Already Exists", JOptionPane.YES_NO_OPTION, 
+									JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "Não",}, null);
+							if (response == 0) {
+								BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
+								bw.write(text); 
+								bw.close();
+							}
+						}
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(new JFrame(), "Couldn't Write to File", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+
+		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar m\u00FAsica");
+		fileMenu.add(menuItemSaveMidi);
+
+		JMenuItem menuItemHelp = new JMenuItem("Ajuda");
+		menuItemHelp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Help helpWindow = new Help();
+				helpWindow.createWindow();
+			}
+		});
+		menuBar.add(menuItemHelp);
+
+		JMenuItem menuItemAbout = new JMenuItem("Sobre");
+		menuItemAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				About aboutWindow = new About();
+				aboutWindow.createWindow();
+			}
+		});
+		menuBar.add(menuItemAbout);
+
+
 	}
 }
