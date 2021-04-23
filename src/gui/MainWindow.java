@@ -462,7 +462,7 @@ public class MainWindow {
 						textSong.setText(content);
 						useDelimiter.close();
 					} catch (IOException  e1) {
-						JOptionPane.showMessageDialog(new JFrame(), "Couldn't Open File", "ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), "Erro ao abrir arquivo", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -490,7 +490,7 @@ public class MainWindow {
 							bw.write(text); 
 							bw.close();
 						} else {
-							int response = JOptionPane.showOptionDialog(new JFrame(), "Overwrite file?", "File Already Exists", JOptionPane.YES_NO_OPTION, 
+							int response = JOptionPane.showOptionDialog(new JFrame(), "sobrescrever arquivo?", "Arquivo já existe", JOptionPane.YES_NO_OPTION, 
 									JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "Não",}, null);
 							if (response == 0) {
 								BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
@@ -499,7 +499,7 @@ public class MainWindow {
 							}
 						}
 					} catch (IOException e1) {
-						JOptionPane.showMessageDialog(new JFrame(), "Couldn't Write to File", "ERROR", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
