@@ -42,26 +42,59 @@ public class Help extends JFrame {
 	public Help() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 626, 506);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 10, 602, 438);
-		contentPane.add(scrollPane);
 		
 		JTextArea txtHelp = new JTextArea();
 		txtHelp.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		txtHelp.setBackground(UIManager.getColor("ScrollBar.foreground"));
-		txtHelp.setText("No menu arquivo voc\u00EA pode abrir um arquivo de texto com uma m\u00FAsica para o programa, salvar o texto atual ou salvar a m\u00FAsica.\r\n\n\n\n\n\u00C9 poss\u00EDvel inserir Modifica\u00E7\u00F5es na musica usando os bot\u00F5es para inserir Notas e inserir Op\u00E7\u00F5es, ou voc\u00EA pode inserir diretamente no formato de texto na caixa m\u00FAsica, sendo os comandos dispon\u00EDveis listados abaixo:\r\n\n\nA ou a: L\u00E1\n\r\nB ou b: Si\r\n\nC ou c: D\u00F3\r\n\nD ou d: R\u00E9\n\r\nE ou e: Mi\r\n\nF ou f: F\u00E1\n\r\nG ou g: Sol\n\r\nCaractere Espa\u00E7o: Pausa\n\r\n+:Dobra o volume\r\n\n-: Volume default\n\r\nV+: Aumenta o volume em 10 unidades\r\n\nV-: diminui o volume em 10 unidades\r\n\nO, o, I ou i, U ou u: se caractere anterior era uma nota repete a nota; caso contrario, silencio ou pausa\n\r\nT+: aumenta uma oitava\n\r\nT-: diminui uma oitava\n\r\n? ou .: nota aleat\u00F3ria\r\nNL(nova linha): Troca instrumento\n\r\nBPM+: aumenta BPM em 50\n\r\nBPM-: diminui BPM em 50\r\n\nBPM>: Aumenta BPM em 10 unidades\n\r\nBPM<: Diminui BPM em 10 unidades\r\n\nQualquer outra sequencia al\u00E9m dessas n\u00E3o altera a musica");
+		txtHelp.setText("No menu arquivo você pode abrir um arquivo de texto com uma música para o programa, salvar o texto atual ou salvar a música.\r\n"
+				+ "É possível inserir Modificações na musica usando os botões para inserir Notas e inserir Opções, ou você pode inserir diretamente no formato de texto na caixa música, sendo os comandos disponíveis listados abaixo:\r\n"
+				+ "\r\n"
+				+ "\r\n"
+				+ "(Letra A maiúscula): Nota Lá\r\n"
+				+ "(Letra B maiúscula): Nota Si\r\n"
+				+ "(Letra C maiúscula): Nota Dó\r\n"
+				+ "(Letra D maiúscula): Nota Ré\r\n"
+				+ "(Letra E maiúscula): Nota Mi\r\n"
+				+ "(Letra F maiúscula): Nota Fá\r\n"
+				+ "(Letra G maiúscula): Nota Sol\r\n"
+				+ "(Letra P maiúscula): Silêncio ou pausa\r\n"
+				+ "(Letra R maiúscula): Toca uma nota aleatória (de A a G), randomicamente escolhida\r\n"
+				+ "Letras a,b,c,d,e,f,g minúsculas: Se caractere anterior era NOTA (A a G), repete nota; Caso contrário, Silêncio ou pausa\r\n"
+				+ "Qualquer outra letra consoante (todas consoantes exceto as que são notas): Se caractere anterior era NOTA (A a G), repete nota; Caso contrário, Silêncio ou pausa\r\n"
+				+ "\r\n"
+				+ "BPM+: Aumenta BPM em 50 unidades\r\n"
+				+ "BPM-: Diminui BPM em 50 unidades\r\n"
+				+ "Caracteres T+ (letra T seguida de sinal de adição): Aumenta uma oitava\r\n"
+				+ "Caracteres T- (letra T seguida de sinal de subtração): Diminui uma oitava\r\n"
+				+ "Caractere ? (ponto de interrogação) e caractere . (ponto): Aumenta UMA oitava; Se não puder, aumentar, volta à oitava default (de início)\r\n"
+				+ "Caractere + (sinal de adição): Aumenta volume em 10 unidades\r\n"
+				+ "Caractere - (sinal de subtração): Diminui volume em 10 unidades\r\n"
+				+ "Caractere Espaço: Aumenta volume para o DOBRO do volume; Se não puder aumentar, volta ao volume default (de início)\r\n"
+				+ "\r\n"
+				+ "Dígito par ou impar: Trocar instrumento para o instrumento General MIDI cujo numero é igual ao valor do instrumento ATUAL + valor do dígito\r\n"
+				+ "Caractere ! (ponto de exclamação): Trocar instrumento para o instrumento General MIDI #114 (Agogo)\r\n"
+				+ "Qualquer outra letra vogal (O ou o, I ou i , U ou u): Trocar instrumento para o instrumento General MIDI #7 (Harpsichord)\r\n"
+				+ "Caractere NL (nova linha): Trocar instrumento para o instrumento General MIDI #15 (Tubular Bells)\r\n"
+				+ "Caractere ; (ponto e vírgula): Trocar instrumento para o instrumento General MIDI #76 (Pan Flute)\r\n"
+				+ "Caractere , (vírgula): Trocar instrumento para o instrumento General MIDI #20 (Church Organ)\r\n"
+				+ "\r\n"
+				+ "Qualquer outra sequencia além dessas não altera a musica");
 		txtHelp.setEditable(false);
 		txtHelp.setLineWrap(true);
 		// Text scrolled back to the top
 		txtHelp.select(0, 0);
-		scrollPane.setViewportView(txtHelp);
+		
+		JScrollPane scrollPane = new JScrollPane(txtHelp, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		scrollPane.setBounds(10, 10, 602, 438);
+		
+		
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout());
+		contentPane.add(scrollPane);
 		
 		
 	}
