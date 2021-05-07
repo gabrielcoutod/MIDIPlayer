@@ -41,16 +41,17 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import gui.Help;
 import gui.About;
+import player.InputConverter;
 
 
 public class MainWindow {
 
 	private JFrame frame;
-
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		InputConverter.auto_test();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -490,8 +491,8 @@ public class MainWindow {
 							bw.write(text); 
 							bw.close();
 						} else {
-							int response = JOptionPane.showOptionDialog(new JFrame(), "sobrescrever arquivo?", "Arquivo já existe", JOptionPane.YES_NO_OPTION, 
-									JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "Não",}, null);
+							int response = JOptionPane.showOptionDialog(new JFrame(), "sobrescrever arquivo?", "Arquivo jï¿½ existe", JOptionPane.YES_NO_OPTION, 
+									JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "Nï¿½o",}, null);
 							if (response == 0) {
 								BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
 								bw.write(text); 

@@ -1,6 +1,5 @@
 package symbol;
 
-
 //Symbol from input text that represents a Note.
 public class Note extends Symbol {
  private Notes note;
