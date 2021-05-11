@@ -11,4 +11,26 @@ public class Note extends Symbol {
  public Notes getNote() {
 	 return note;
  }
+
+@Override
+ public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + ((note == null) ? 0 : note.hashCode());
+	return result;
+ }
+
+@Override
+ public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Note other = (Note) obj;
+	if (note != other.note)
+		return false;
+	return true;
+ }
 }

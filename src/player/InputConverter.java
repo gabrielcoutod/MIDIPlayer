@@ -135,7 +135,7 @@ public class InputConverter {
 			} else if (text_in.charAt(0) == '.' || text_in.charAt(0) == '?') {
 				result.add(new symbol.OctaveIncrementAlteration());
 				index++;
-			} else if (Character.getNumericValue(text_in.charAt(0)) >= 0) {
+			} else if (Character.isDigit(text_in.charAt(0))) {
 				// 0-9
 				result.add(new InstrumentRelativeAlteration(Character.getNumericValue(text_in.charAt(0))));
 				index++;
