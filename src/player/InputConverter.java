@@ -28,114 +28,94 @@ public class InputConverter {
 	 */
     public static Symbol[] convert(String text_in) {
 		ArrayList<Symbol> result = new ArrayList<Symbol>();
-    	while (text_in.length() > 0) {
-			int index = 0;
-			if (text_in.charAt(0) == 'A') {
+		int length = text_in.length();
+		int index = 0;
+    	while (index < length) {
+			if (text_in.charAt(index) == 'A') {
 				result.add(new Note(Notes.A));
-				index++;
-			} else if (text_in.charAt(0) == 'B') {
+			} else if (text_in.charAt(index) == 'B') {
 				// Verifica se é BPM+ ou BPM-
-				if (text_in.length() >= "BPM+".length()) {
+				if (length - index >= "BPM+".length()) {
 					if (text_in.substring(index, index + 4).equals("BPM+")) {
 						result.add(new BPMAlteration(50));
-						index = index + 4;
+						index = index + 3;
 					} else if (text_in.substring(index, index + 4).equals("BPM-")) {
 						result.add(new BPMAlteration(-50));
-						index = index + 4;
+						index = index + 3;
 					} else {
 						result.add(new Note(Notes.B));
-						index++;
 					}
 				} else {
 					result.add(new Note(Notes.B));
-					index++;
 				}
-			} else if (text_in.charAt(0) == 'C') {
+			} else if (text_in.charAt(index) == 'C') {
 				result.add(new Note(Notes.C));
-				index++;
-			} else if (text_in.charAt(0) == 'D') {
+			} else if (text_in.charAt(index) == 'D') {
 				result.add(new Note(Notes.D));
-				index++;
-			} else if (text_in.charAt(0) == 'E') {
+			} else if (text_in.charAt(index) == 'E') {
 				result.add(new Note(Notes.E));
-				index++;
-			} else if (text_in.charAt(0) == 'F') {
+			} else if (text_in.charAt(index) == 'F') {
 				result.add(new Note(Notes.F));
-				index++;
-			} else if (text_in.charAt(0) == 'G') {
+			} else if (text_in.charAt(index) == 'G') {
 				result.add(new Note(Notes.G));
-				index++;				
-			} else if (text_in.charAt(0) == 'P') {
+			} else if (text_in.charAt(index) == 'P') {
 				result.add(new Note(Notes.P));
-				index++;
-			} else if (text_in.charAt(0) == 'R') {
+			} else if (text_in.charAt(index) == 'R') {
 				List<Note> musicalNotes = Note.getMusicalNotes();
 				result.add(musicalNotes.get(new Random().nextInt(musicalNotes.size())));
-				index++;
-			} else if (text_in.charAt(0) == '+') {
+			} else if (text_in.charAt(index) == '+') {
 				result.add(new VolumeAlteration(10));
-				index++;
-			} else if (text_in.charAt(0) == '-') {
+			} else if (text_in.charAt(index) == '-') {
 				result.add(new VolumeAlteration(-10));
-				index++;
-			} else if (text_in.charAt(0) == ' ') {
+			} else if (text_in.charAt(index) == ' ') {
 				result.add(new VolumeDoubleAlteration());
-				index++;
-			} else if (text_in.charAt(0) == 'T') {
+			} else if (text_in.charAt(index) == 'T') {
 				// Checks if + or - exists after the letter
-				if (text_in.length() >= "T+".length()) {
-					if (text_in.charAt(1) == '+') {
+				if (length - index >= "T+".length()) {
+					if (text_in.charAt(index + 1) == '+') {
 						result.add(new symbol.OctaveAlteration(1));
-						index = index + 2;
-					} else if (text_in.charAt(1) == '-') {
+						index++;
+					} else if (text_in.charAt(index + 1) == '-') {
 						result.add(new symbol.OctaveAlteration(-1));
-						index += 2;
+						index++;
 					} else {
 						if (Note.getMusicalNotes().contains(result.get(result.size()-1)))
 							result.add(result.get(result.size()-1));
 						else
 							result.add(new Note(Notes.P));
-						index++;
 					}
 				} else {
 					if (Note.getMusicalNotes().contains(result.get(result.size()-1)))
 						result.add(result.get(result.size()-1));
 					else
 						result.add(new Note(Notes.P));
-					index++;
 				}
-			} else if (text_in.charAt(0) == '.' || text_in.charAt(0) == '?') {
+			} else if (text_in.charAt(index) == '.' || text_in.charAt(index) == '?') {
 				result.add(new symbol.OctaveIncrementAlteration());
-				index++;
-			} else if (Character.isDigit(text_in.charAt(0))) {
+			} else if (Character.isDigit(text_in.charAt(index))) {
 				// 0-9
-				result.add(new InstrumentRelativeAlteration(Character.getNumericValue(text_in.charAt(0))));
-				index++;
-			} else if (text_in.charAt(0) == '!') {
+				result.add(new InstrumentRelativeAlteration(Character.getNumericValue(text_in.charAt(index))));
+			} else if (text_in.charAt(index) == '!') {
 				result.add(new InstrumentAlteration(114));
-				index++;
-			} else if (text_in.charAt(0) == '\n') {
+			} else if (text_in.charAt(index) == '\n') {
 				result.add(new InstrumentAlteration(15));
-				index++;
-			} else if (text_in.charAt(0) == ';') {
+			} else if (text_in.charAt(index) == ';') {
 				result.add(new InstrumentAlteration(76));
-				index++;
-			} else if (text_in.charAt(0) == ',') {
+			} else if (text_in.charAt(index) == ',') {
 				result.add(new InstrumentAlteration(20));
-				index++;
-			} else if (Character.toLowerCase(text_in.charAt(0)) == 'i' || Character.toLowerCase(text_in.charAt(0)) == 'o' || Character.toLowerCase(text_in.charAt(0)) == 'u') {
+			} else if (Character.toLowerCase(text_in.charAt(index)) == 'i' || 
+					Character.toLowerCase(text_in.charAt(index)) == 'o' || 
+					Character.toLowerCase(text_in.charAt(index)) == 'u') {
 				// I O U vowels
 				result.add(new InstrumentAlteration(7));
-				index++;
 			} else {
 				// Else is responsible for a-g characters, any consonant that is not a note and any other character.
 				if (Note.getMusicalNotes().contains(result.get(result.size()-1)))
 					result.add(result.get(result.size()-1));
 				else
 					result.add(new Note(Notes.P));
-				index++;
 			}
-			text_in = text_in.substring(index);
+			index++;
         }
     	// Coverts ArrayList to array and returns the result.
     	return result.toArray(new Symbol[result.size()]);
