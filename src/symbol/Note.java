@@ -25,6 +25,13 @@ public class Note extends Symbol {
 	 return musicalNotes;
  }
 
+ public String toString(){
+	 if(note.name().equals("P"))
+		return "C-";
+	 else
+		return note.name();
+ }
+
 @Override
  public int hashCode() {
 	final int prime = 31;

@@ -25,7 +25,9 @@ public class Instrument {
     public void update(InstrumentRelativeAlteration instrumentAlteration) {
     	instrument += instrumentAlteration.getDifference();
     	if (instrument > maxInstrument)
-    		instrument = maxInstrument;
+    		 instrument = maxInstrument;
+        else if (instrument < minInstrument)
+             instrument = minInstrument;
     }
 
     public int getInstrument() {

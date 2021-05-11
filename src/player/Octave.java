@@ -27,7 +27,9 @@ public class Octave {
  public void update(OctaveAlteration octaveAlteration) {
 	 octave += octaveAlteration.getDifference();
 	 if(octave > maxOctave)
-		 octave = maxOctave;
+	 	 octave = maxOctave;
+	 else if (octave < minOctave)
+		 octave = minOctave;
  }
 
  public int getOctave() {

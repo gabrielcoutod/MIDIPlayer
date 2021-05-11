@@ -22,6 +22,8 @@ public class BPM {
 	 bpm += BPMAlteration.getDifference();
 	 if (bpm > maxBPM)
 		 bpm = maxBPM;
+	else if (bpm < minBPM)
+		bpm = minBPM;
  }
 
  public int getBPM() {
