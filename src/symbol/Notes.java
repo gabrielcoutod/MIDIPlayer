@@ -1,5 +1,6 @@
 package symbol;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,10 +8,14 @@ import java.util.List;
 //P is a pause.
 public enum Notes {
 	A, B, C, D, E, F, G, P;
+	private static ArrayList<Notes> musicalNotes;
+	
+	static {
+		musicalNotes = new ArrayList<Notes>(Arrays.asList(Notes.values()));
+		musicalNotes.remove(Notes.P);
+	}
 	
 	public static List<Notes> getMusicalNotes() {
-		List<Notes> musicalNotes = Arrays.asList(Notes.values());
-		musicalNotes.remove(Notes.P);
 		return musicalNotes;
 	}
 }

@@ -1,8 +1,17 @@
 package symbol;
 
+import java.util.ArrayList;
+
 //Symbol from input text that represents a Note.
 public class Note extends Symbol {
  private Notes note;
+ private static ArrayList<Note> musicalNotes;
+ 
+ static {
+	 musicalNotes = new ArrayList<Note>();
+	 for(Notes note: Notes.getMusicalNotes())
+		 musicalNotes.add(new Note(note));
+ }
 
  public Note(Notes note) {
 	 this.note = note;
@@ -10,6 +19,10 @@ public class Note extends Symbol {
 
  public Notes getNote() {
 	 return note;
+ }
+ 
+ public static ArrayList<Note> getMusicalNotes() {
+	 return musicalNotes;
  }
 
 @Override
