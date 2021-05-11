@@ -51,7 +51,6 @@ public class MainWindow {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		InputConverter.auto_test();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

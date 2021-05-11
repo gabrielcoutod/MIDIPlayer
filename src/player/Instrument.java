@@ -1,6 +1,7 @@
 package player;
 
 import symbol.InstrumentAlteration;
+import symbol.InstrumentRelativeAlteration;
 
 //Represents an Instrument.
 public class Instrument {
@@ -17,8 +18,14 @@ public class Instrument {
     	this.instrument = defaultInstrument;
     }
 
-    public void update(InstrumentAlteration alterInstrument) {
-    	
+    public void update(InstrumentAlteration instrumentAlteration) {
+    	instrument = instrumentAlteration.getInstrument();
+    }
+    
+    public void update(InstrumentRelativeAlteration instrumentAlteration) {
+    	instrument += instrumentAlteration.getDifference();
+    	if (instrument > maxInstrument)
+    		instrument = maxInstrument;
     }
 
     public int getInstrument() {

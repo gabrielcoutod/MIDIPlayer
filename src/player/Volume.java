@@ -18,11 +18,15 @@ public class Volume {
 	 this.volume = defaultVolume;
  }
 
- public void update(VolumeAlteration alterVolume) {
-	 
+ public void update(VolumeAlteration volumeAlteration) {
+	 volume += volumeAlteration.getDifference();
+	 if(volume > maxVolume)
+		 volume = maxVolume;
  }
- public void update(VolumeDoubleAlteration alterVolume) {
-	 
+ public void update(VolumeDoubleAlteration volumeAlteration) {
+	volume = volume * 2;
+	if(volume > maxVolume)
+		volume = minVolume;
  }
 
  public int getVolume() {

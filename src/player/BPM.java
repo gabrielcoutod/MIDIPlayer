@@ -18,8 +18,10 @@ public class BPM {
 	 this.bpm = defaultBPM;
  }
 
- public void update(BPMAlteration alterBPM) {
-	 
+ public void update(BPMAlteration BPMAlteration) {
+	 bpm += BPMAlteration.getDifference();
+	 if (bpm > maxBPM)
+		 bpm = maxBPM;
  }
 
  public int getBPM() {

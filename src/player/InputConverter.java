@@ -6,9 +6,11 @@ import symbol.BPMAlteration;
 import symbol.VolumeAlteration;
 import symbol.VolumeDoubleAlteration;
 import symbol.InstrumentAlteration;
+import symbol.InstrumentRelativeAlteration;
 import symbol.Symbol;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -28,7 +30,7 @@ public class InputConverter {
 
 	/*
 		The check_previous function returns a Note symbol, based in the 2 previous characters.
-		The functions recieves a String called sector, which is comprised of the 2 previous characters of the checked
+		The functions receives a String called sector, which is comprised of the 2 previous characters of the checked
 		char and the char itself. This functions returns the previous note played if the symbol immediately before it
 		is a note. In our implementation, A# is also a note, so "A#a" repeats A#.
 
@@ -38,22 +40,21 @@ public class InputConverter {
 		3 repetitions of the A# note. Therefore, the check_previous function is necessary.
 	 */
 	private static Note check_previous(String sector) {
-		int sharp = sector.charAt(1) == '#' ? 1 : 0;
-		switch (sector.charAt(1-sharp)) {
+		switch (sector.charAt(1)) {
 			case 'A':
-				return sharp == 1 ? new Note(Notes.ASharp) : new Note(Notes.A);
+				return new Note(Notes.A);
 			case 'B':
-				return sharp == 1 ? new Note(Notes.C) : new Note(Notes.B);
+				return new Note(Notes.B);
 			case 'C':
-				return sharp == 1 ? new Note(Notes.CSharp) : new Note(Notes.C);
+				return new Note(Notes.C);
 			case 'D':
-				return sharp == 1 ? new Note(Notes.DSharp) : new Note(Notes.D);
+				return new Note(Notes.D);
 			case 'E':
-				return sharp == 1 ? new Note(Notes.F) : new Note(Notes.E);
+				return new Note(Notes.E);
 			case 'F':
-				return sharp == 1 ? new Note(Notes.FSharp) : new Note(Notes.F);
+				return new Note(Notes.F);
 			case 'G':
-				return sharp == 1 ? new Note(Notes.GSharp) : new Note(Notes.G);
+				return new Note(Notes.G);
 		}
 		return new Note(Notes.P);
 	}
@@ -74,22 +75,11 @@ public class InputConverter {
     	while (text_in.length() > 0) {
 			int index = 0;
 			if (text_in.charAt(0) == 'A') {
-				// Checks if # exists after the letter
-				if (text_in.charAt(1) == '#') {
-					result.add(new Note(Notes.ASharp));
-					index = index + 2;
-				} else {
-					result.add(new Note(Notes.A));
-					index++;
-				}
+				result.add(new Note(Notes.A));
+				index++;
 			} else if (text_in.charAt(0) == 'B') {
-				// Checks if # exists after the letter
-				if (text_in.charAt(1) == '#') {
-					// In music theory, B# = C.
-					result.add(new Note(Notes.C));
-					index = index + 2;
-				// Verifica se Ã© BPM+ ou BPM-
-				} else if (text_in.substring(index, index + 4).equals("BPM+") || text_in.substring(index, index + 4).equals("BPM-")) {
+				// Verifica se é BPM+ ou BPM-
+				if (text_in.substring(index, index + 4).equals("BPM+") || text_in.substring(index, index + 4).equals("BPM-")) {
 					if (text_in.charAt(index + 3) == '+') {
 						result.add(new BPMAlteration(50));
 					} else if (text_in.charAt(index + 3) == '-') {
@@ -101,55 +91,26 @@ public class InputConverter {
 					index++;
 				}
 			} else if (text_in.charAt(0) == 'C') {
-				// Checks if # exists after the letter
-				if (text_in.charAt(1) == '#') {
-					result.add(new Note(Notes.CSharp));
-					index = index + 2;
-				} else {
-					result.add(new Note(Notes.C));
-					index++;
-				}
+				result.add(new Note(Notes.C));
+				index++;
 			} else if (text_in.charAt(0) == 'D') {
-				// Checks if # exists after the letter
-				if (text_in.charAt(1) == '#') {
-					result.add(new Note(Notes.DSharp));
-					index = index + 2;
-				} else {
-					result.add(new Note(Notes.D));
-					index++;
-				}
+				result.add(new Note(Notes.D));
+				index++;
 			} else if (text_in.charAt(0) == 'E') {
-				// Checks if # exists after the letter
-				if (text_in.charAt(1) == '#') {
-					// In music theory, E# = F.
-					result.add(new Note(Notes.F));
-					index = index + 2;
-				} else {
-					result.add(new Note(Notes.E));
-					index++;
-				}
+				result.add(new Note(Notes.E));
+				index++;
 			} else if (text_in.charAt(0) == 'F') {
-				// Checks if # exists after the letter
-				if (text_in.charAt(1) == '#') {
-					result.add(new Note(Notes.FSharp));
-					index = index + 2;
-				} else {
-					result.add(new Note(Notes.F));
-					index++;
-				}
+				result.add(new Note(Notes.F));
+				index++;
 			} else if (text_in.charAt(0) == 'G') {
-				// Checks if # exists after the letter
-				if (text_in.charAt(1) == '#') {
-					result.add(new Note(Notes.GSharp));
-					index = index + 2;
-				} else {
-					result.add(new Note(Notes.G));
-					index++;
-				}
+				result.add(new Note(Notes.G));
+				index++;				
 			} else if (text_in.charAt(0) == 'P') {
 				result.add(new Note(Notes.P));
 				index++;
-				break;
+			} else if (text_in.charAt(0) == 'R') {
+				List<Notes> musicalNotes = Notes.getMusicalNotes();
+				result.add(new Note(musicalNotes.get(new Random().nextInt(musicalNotes.size()))));
 			} else if (text_in.charAt(0) == '+') {
 				result.add(new VolumeAlteration(10));
 				index++;
@@ -157,7 +118,7 @@ public class InputConverter {
 				result.add(new VolumeAlteration(-10));
 				index++;
 			} else if (text_in.charAt(0) == ' ') {
-				result.add(new VolumeDoubleAlteration(true));
+				result.add(new VolumeDoubleAlteration());
 				index++;
 			} else if (text_in.charAt(0) == 'T') {
 				// Checks if + or - exists after the letter
@@ -172,27 +133,27 @@ public class InputConverter {
 					index++;
 				}
 			} else if (text_in.charAt(0) == '.' || text_in.charAt(0) == '?') {
-				result.add(new symbol.OctaveAlteration(1));
+				result.add(new symbol.OctaveIncrementAlteration());
 				index++;
 			} else if (Character.getNumericValue(text_in.charAt(0)) >= 0) {
 				// 0-9
-				result.add(new InstrumentAlteration(Character.getNumericValue(text_in.charAt(0)),true));
+				result.add(new InstrumentRelativeAlteration(Character.getNumericValue(text_in.charAt(0))));
 				index++;
 			} else if (text_in.charAt(0) == '!') {
-				result.add(new InstrumentAlteration(114,false));
+				result.add(new InstrumentAlteration(114));
 				index++;
 			} else if (text_in.charAt(0) == '\n') {
-				result.add(new InstrumentAlteration(15,false));
+				result.add(new InstrumentAlteration(15));
 				index++;
 			} else if (text_in.charAt(0) == ';') {
-				result.add(new InstrumentAlteration(76,false));
+				result.add(new InstrumentAlteration(76));
 				index++;
 			} else if (text_in.charAt(0) == ',') {
-				result.add(new InstrumentAlteration(20,false));
+				result.add(new InstrumentAlteration(20));
 				index++;
 			} else if (Character.toLowerCase(text_in.charAt(0)) == 'i' || Character.toLowerCase(text_in.charAt(0)) == 'o' || Character.toLowerCase(text_in.charAt(0)) == 'u') {
 				// I O U vowels
-				result.add(new InstrumentAlteration(7,false));
+				result.add(new InstrumentAlteration(7));
 				index++;
 			} else {
 				// Else is responsible for a-g characters, any consonant that is not a note and any other character.

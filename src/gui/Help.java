@@ -79,7 +79,7 @@ public class Help extends JFrame {
 				+ "Caractere ; (ponto e vírgula): Trocar instrumento para o instrumento General MIDI #76 (Pan Flute)\r\n"
 				+ "Caractere , (vírgula): Trocar instrumento para o instrumento General MIDI #20 (Church Organ)\r\n"
 				+ "\r\n"
-				+ "Qualquer outra sequencia além dessas não altera a musica");
+				+ "Para Qualquer outra sequencia Se caractere anterior era NOTA (A a G), repete nota; Caso contrário, Silêncio ou pausa");
 		txtHelp.setEditable(false);
 		txtHelp.setLineWrap(true);
 		// Text scrolled back to the top
