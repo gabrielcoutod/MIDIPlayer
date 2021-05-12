@@ -18,7 +18,7 @@ public class OctaveIncrementAlteration extends Symbol {
 	public void alterPlayer(TCPlayer player) {
 		int newOctave = player.getOctave() + 1;
 		if (newOctave > Octave.maxOctave)
-			player.setOctave(Octave.minOctave);
+			player.setOctave(Octave.defaultOctave);
 		else
 			player.setOctave(newOctave);
 	}

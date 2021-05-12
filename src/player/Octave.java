@@ -1,7 +1,7 @@
 package player;
 //Represents an octave.
 public class Octave {
-	public static final int defaultOctave = 0;
+	public static final int defaultOctave = 5;
 	public static final int maxOctave = 10;
 	public static final int minOctave = 0;
 
