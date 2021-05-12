@@ -2,7 +2,7 @@ package player;
 
 //Represents a volume.
 public class Volume {
-	public static final int defaultVolume = 127;
+	public static final int defaultVolume = 64;
 	public static final int maxVolume = 127;
 	public static final int minVolume = 2;
 

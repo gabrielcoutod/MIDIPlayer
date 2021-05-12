@@ -96,18 +96,18 @@ public class InputConverter {
 				// 0-9
 				result.add(new InstrumentRelativeAlteration(Character.getNumericValue(text_in.charAt(index))));
 			} else if (text_in.charAt(index) == '!') {
-				result.add(new InstrumentAlteration(114));
+				result.add(new InstrumentAlteration(113));
 			} else if (text_in.charAt(index) == '\n') {
-				result.add(new InstrumentAlteration(15));
+				result.add(new InstrumentAlteration(14));
 			} else if (text_in.charAt(index) == ';') {
-				result.add(new InstrumentAlteration(76));
+				result.add(new InstrumentAlteration(75));
 			} else if (text_in.charAt(index) == ',') {
-				result.add(new InstrumentAlteration(20));
+				result.add(new InstrumentAlteration(19));
 			} else if (Character.toLowerCase(text_in.charAt(index)) == 'i'
 					|| Character.toLowerCase(text_in.charAt(index)) == 'o'
 					|| Character.toLowerCase(text_in.charAt(index)) == 'u') {
 				// I O U vowels
-				result.add(new InstrumentAlteration(7));
+				result.add(new InstrumentAlteration(6));
 			} else {
 				// Else is responsible for a-g characters, any consonant that is not a note and
 				// any other character.

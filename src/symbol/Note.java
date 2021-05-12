@@ -28,7 +28,7 @@ public class Note extends Symbol {
 	}
 
 	public String toString() {
-		if (note.name().equals("P"))
+		if (note == Notes.P)
 			return "C-";
 		else
 			return note.name();
@@ -60,7 +60,7 @@ public class Note extends Symbol {
 		Pattern updateSong = new Pattern().setTempo(player.getBPM());
         updateSong.add(":CON(7, " + player.getVolume() + ")");
         updateSong.add("I" + player.getInstrument());
-        updateSong.add(note.toString() + player.getOctave());
-        player.addToSong(updateSong);
+        updateSong.add(toString() + player.getOctave());
+        player.addToSong(updateSong);       
 	}
 }

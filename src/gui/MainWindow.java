@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingWorker;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JCheckBox;
 import javax.swing.JSlider;
@@ -42,8 +43,62 @@ import javax.swing.event.ChangeEvent;
 import gui.Help;
 import gui.About;
 import player.InputConverter;
+import player.TCPlayer;
 
+class MusicPlayer extends SwingWorker<Void, Void> {
+	
+	
+	private boolean running = false;
+	private String text;
+	
+	public MusicPlayer(String text) {
+		this.text = text;
+	}
+	
+	public MusicPlayer() {
+		this.text = "";
+	}
+	
+	public void setText(String text) {
+		this.text = text;
+	}
+	
+	public boolean isRunning() {
+		return running;
+	}
+	
+	@Override
+	protected Void doInBackground() throws Exception {
+		// TODO Auto-generated method stub
+		running = true;
+		new TCPlayer().play(InputConverter.convert(text));
+		return null;
+	}
 
+	@Override
+	protected void done() {
+		running = false;
+	}
+}
+
+class MusicPlayerController {
+	private MusicPlayer musicPlayer = new MusicPlayer();
+	
+	
+	public boolean isRunning() {
+		return musicPlayer.isRunning();
+	}
+	
+	public void cancel(boolean mayInterruptIfRunning) {
+		musicPlayer.cancel(mayInterruptIfRunning);
+	}
+	
+	public void execute(String text) {
+		musicPlayer = new MusicPlayer(text);
+		musicPlayer.execute();
+	}
+}
+ 
 public class MainWindow {
 
 	private JFrame frame;
@@ -400,6 +455,16 @@ public class MainWindow {
 		btnPlaySong.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnPlaySong.setBounds(328, 61, 85, 36);
 		songPanel.add(btnPlaySong);
+		MusicPlayerController controller = new MusicPlayerController();
+		btnPlaySong.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!controller.isRunning()) {
+					controller.execute(textSong.getText());
+				}
+			}
+		});
 		
 		JButton btnClean = new JButton("Limpar");
 		btnClean.addActionListener(new ActionListener() {

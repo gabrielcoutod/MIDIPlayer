@@ -19,7 +19,12 @@ public class TCPlayer {
     private Pattern fullSong;
 
     public TCPlayer() {
-
+    	this.octave = new Octave();
+        this.bpm = new BPM();
+        this.volume = new Volume();
+        this.instrument = new Instrument();
+        this.fullSong = new Pattern();
+        this.player = new Player();
     }
 
     public TCPlayer(int octave, int bpm, int volume, int instrument) {
@@ -75,7 +80,7 @@ public class TCPlayer {
 
     public void play(Symbol[] music) {
         symbolsToMidiString(music);
-        player.play(fullSong);
+    	player.play(fullSong);
     }
 
     public void save(Symbol[] music, String fileName) throws IOException {

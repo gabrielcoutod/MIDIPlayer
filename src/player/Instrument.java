@@ -2,7 +2,7 @@ package player;
 
 //Represents an Instrument.
 public class Instrument {
-    public static final int defaultInstrument = 7;
+    public static final int defaultInstrument = 6;
     public static final int maxInstrument = 200;
     public static final int minInstrument = 0;
 
