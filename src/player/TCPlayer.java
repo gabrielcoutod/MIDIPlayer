@@ -2,6 +2,7 @@ package player;
 
 import symbol.Symbol;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import org.jfugue.player.Player;
 import org.jfugue.pattern.Pattern;
@@ -83,7 +84,7 @@ public class TCPlayer {
     	player.play(fullSong);
     }
 
-    public void save(Symbol[] music, File file) throws IOException {
+    public void save(Symbol[] music, FileOutputStream file) throws IOException {
         symbolsToMidiString(music);
         MidiFileManager.savePatternToMidi(fullSong, file);
     }

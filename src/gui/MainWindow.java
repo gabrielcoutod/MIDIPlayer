@@ -28,6 +28,7 @@ import java.awt.event.FocusEvent;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,27 +48,26 @@ import player.InputConverter;
 import player.TCPlayer;
 
 class MusicPlayer extends SwingWorker<Void, Void> {
-	
-	
+
 	private boolean running = false;
 	private String text;
-	
+
 	public MusicPlayer(String text) {
 		this.text = text;
 	}
-	
+
 	public MusicPlayer() {
 		this.text = "";
 	}
-	
+
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+
 	public boolean isRunning() {
 		return running;
 	}
-	
+
 	@Override
 	protected Void doInBackground() throws Exception {
 		// TODO Auto-generated method stub
@@ -84,25 +84,25 @@ class MusicPlayer extends SwingWorker<Void, Void> {
 
 class MusicPlayerController {
 	private MusicPlayer musicPlayer = new MusicPlayer();
-	
-	
+
 	public boolean isRunning() {
 		return musicPlayer.isRunning();
 	}
-	
+
 	public void cancel(boolean mayInterruptIfRunning) {
 		musicPlayer.cancel(mayInterruptIfRunning);
 	}
-	
+
 	public void execute(String text) {
 		musicPlayer = new MusicPlayer(text);
 		musicPlayer.execute();
 	}
 }
- 
+
 public class MainWindow {
 
 	private JFrame frame;
+
 	/**
 	 * Launch the application.
 	 */
@@ -131,19 +131,19 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		// Frame code
-		
+
 		frame = new JFrame("MIDI Player");
 		frame.setBounds(100, 100, 914, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		// Notes panel code
-		
+
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(10, 10, 875, 474);
 		frame.getContentPane().add(panel);
-		
+
 		JPanel notesPanel = new JPanel();
 		notesPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		notesPanel.setBounds(0, 32, 184, 432);
@@ -160,7 +160,6 @@ public class MainWindow {
 		btnAddNote.setBounds(27, 381, 124, 29);
 		notesPanel.add(btnAddNote);
 
-
 		List<JCheckBox> checkBoxNotes = new ArrayList<JCheckBox>();
 
 		JCheckBox checkBoxC = new JCheckBox("C");
@@ -170,7 +169,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxC.setSelected(true);
@@ -186,7 +185,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxD.setSelected(true);
@@ -202,7 +201,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxE.setSelected(true);
@@ -218,7 +217,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxF.setSelected(true);
@@ -234,7 +233,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxG.setSelected(true);
@@ -250,7 +249,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxA.setSelected(true);
@@ -266,7 +265,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxB.setSelected(true);
@@ -282,7 +281,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxRandom.setSelected(true);
@@ -298,7 +297,7 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox: checkBoxNotes) {
+				for (JCheckBox checkBox : checkBoxNotes) {
 					checkBox.setSelected(false);
 				}
 				checkBoxPause.setSelected(true);
@@ -306,41 +305,40 @@ public class MainWindow {
 		});
 		checkBoxNotes.add(checkBoxPause);
 		notesPanel.add(checkBoxPause);
-		
+
 		// Options Panel code
-		
+
 		JPanel optionsPanel = new JPanel();
 		optionsPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		optionsPanel.setBounds(194, 32, 228, 432);
 		panel.add(optionsPanel);
 		optionsPanel.setLayout(null);
-		
-		//TODO
+
+		// TODO
 		// Import Max and Min of the sliders
 		// from the classes that handle that
-		
+
 		JLabel lblOptions = new JLabel("Op\u00E7\u00F5es");
 		lblOptions.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		lblOptions.setBounds(10, 10, 62, 23);
 		optionsPanel.add(lblOptions);
-		
+
 		// Labels and Slider for BPM
-		
+
 		JLabel lblBPM = new JLabel("BPM =");
 		lblBPM.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblBPM.setBounds(10, 46, 46, 23);
 		optionsPanel.add(lblBPM);
-		
+
 		JSlider sliderBPM = new JSlider();
-		
+
 		JLabel lblBPMValue = new JLabel("");
 		lblBPMValue.setLabelFor(sliderBPM);
 		lblBPMValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblBPMValue.setBounds(52, 46, 46, 23);
 		lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
 		optionsPanel.add(lblBPMValue);
-		
-		
+
 		sliderBPM.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
@@ -350,27 +348,23 @@ public class MainWindow {
 		sliderBPM.setMaximum(1000);
 		sliderBPM.setBounds(10, 69, 200, 22);
 		optionsPanel.add(sliderBPM);
-		
-		
 
 		// Labels and Slider for Octave
-		
+
 		JSlider sliderOctave = new JSlider();
-		
+
 		JLabel lblOctaveValue = new JLabel("");
 		lblOctaveValue.setLabelFor(sliderOctave);
 		lblOctaveValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblOctaveValue.setBounds(64, 108, 55, 23);
 		lblOctaveValue.setText(Integer.toString(sliderOctave.getValue()));
 		optionsPanel.add(lblOctaveValue);
-		
+
 		JLabel lblOctave = new JLabel("Oitava = ");
 		lblOctave.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblOctave.setBounds(10, 108, 55, 23);
 		optionsPanel.add(lblOctave);
-		
-		
-		
+
 		sliderOctave.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				lblOctaveValue.setText(Integer.toString(sliderOctave.getValue()));
@@ -381,21 +375,18 @@ public class MainWindow {
 		sliderOctave.setMaximum(5);
 		sliderOctave.setBounds(10, 141, 200, 22);
 		optionsPanel.add(sliderOctave);
-		
-		
+
 		// Labels and Slider for Volume
 
-		
 		JSlider sliderVolume = new JSlider();
-		
-		
+
 		JLabel lblVolumeValue = new JLabel("");
 		lblVolumeValue.setLabelFor(sliderVolume);
 		lblVolumeValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblVolumeValue.setBounds(64, 173, 62, 23);
 		lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
 		optionsPanel.add(lblVolumeValue);
-		
+
 		sliderVolume.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
@@ -404,54 +395,54 @@ public class MainWindow {
 		sliderVolume.setValue(10);
 		sliderVolume.setBounds(10, 201, 200, 22);
 		optionsPanel.add(sliderVolume);
-		
+
 		JLabel lblVolume = new JLabel("Volume = ");
 		lblVolume.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblVolume.setBounds(10, 173, 62, 23);
 		optionsPanel.add(lblVolume);
-		
+
 		// Rest of the interface
-		
+
 		JButton btnUpdate = new JButton("Atualizar");
 		btnUpdate.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnUpdate.setBounds(39, 381, 124, 29);
 		optionsPanel.add(btnUpdate);
-		
+
 		JLabel lblInstruments = new JLabel("Instrumento");
 		lblInstruments.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblInstruments.setBounds(10, 260, 77, 23);
 		optionsPanel.add(lblInstruments);
-		
+
 		JComboBox comboBoxInstruments = new JComboBox();
-		comboBoxInstruments.setModel(new DefaultComboBoxModel(new String[] {"Agogo", "Piano", "Sinos", "Flauta", "\u00D3rg\u00E3o"}));
+		comboBoxInstruments.setModel(
+				new DefaultComboBoxModel(new String[] { "Agogo", "Piano", "Sinos", "Flauta", "\u00D3rg\u00E3o" }));
 		comboBoxInstruments.setBounds(97, 261, 113, 23);
 		optionsPanel.add(comboBoxInstruments);
-		
-		
+
 		// Song panel code
 		JPanel songPanel = new JPanel();
 		songPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		songPanel.setBounds(432, 32, 443, 432);
 		panel.add(songPanel);
 		songPanel.setLayout(null);
-		
+
 		JLabel lblSong = new JLabel("M\u00FAsica");
 		lblSong.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		lblSong.setBounds(10, 10, 62, 23);
 		songPanel.add(lblSong);
-		
+
 		JScrollPane songTextPane = new JScrollPane();
 		songTextPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		songTextPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		songTextPane.setBounds(10, 43, 297, 379);
 		songPanel.add(songTextPane);
-		
+
 		JTextArea textSong = new JTextArea();
 		textSong.setLineWrap(true);
 		textSong.setWrapStyleWord(true);
 		textSong.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		songTextPane.setViewportView(textSong);
-		
+
 		JButton btnPlaySong = new JButton("Tocar");
 		btnPlaySong.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnPlaySong.setBounds(328, 61, 85, 36);
@@ -466,7 +457,7 @@ public class MainWindow {
 				}
 			}
 		});
-		
+
 		JButton btnClean = new JButton("Limpar");
 		btnClean.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -476,35 +467,35 @@ public class MainWindow {
 		btnClean.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnClean.setBounds(328, 123, 85, 36);
 		songPanel.add(btnClean);
-		
+
 		btnAddNote.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent event){
-				if(checkBoxA.isSelected()) {
+			public void actionPerformed(ActionEvent event) {
+				if (checkBoxA.isSelected()) {
 					textSong.append("A");
-				} else if(checkBoxB.isSelected()) {
+				} else if (checkBoxB.isSelected()) {
 					textSong.append("B");
-				} else if(checkBoxC.isSelected()) {
+				} else if (checkBoxC.isSelected()) {
 					textSong.append("C");
-				} else if(checkBoxD.isSelected()) {
+				} else if (checkBoxD.isSelected()) {
 					textSong.append("D");
-				} else if(checkBoxE.isSelected()) {
+				} else if (checkBoxE.isSelected()) {
 					textSong.append("E");
-				} else if(checkBoxF.isSelected()) {
+				} else if (checkBoxF.isSelected()) {
 					textSong.append("F");
-				} else if(checkBoxG.isSelected()) {
+				} else if (checkBoxG.isSelected()) {
 					textSong.append("G");
-				} else if(checkBoxRandom.isSelected()) {
+				} else if (checkBoxRandom.isSelected()) {
 					List<String> notesList = Arrays.asList("A", "B", "C", "D", "E", "F", "G");
 					Random rand = new Random();
-				    String randomNote = notesList.get(rand.nextInt(notesList.size()));
-				    textSong.append(randomNote);
-				} else if(checkBoxPause.isSelected()) {
+					String randomNote = notesList.get(rand.nextInt(notesList.size()));
+					textSong.append(randomNote);
+				} else if (checkBoxPause.isSelected()) {
 					textSong.append("P");
 				}
 			}
 		});
-		
-		//Menu bar code
+
+		// Menu bar code
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 275, 22);
@@ -527,13 +518,12 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				int userSelection = fileChooser.showOpenDialog(frame);
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
-					try {
-						Scanner useDelimiter = new Scanner(fileChooser.getSelectedFile()).useDelimiter("\\Z");
+					try (Scanner useDelimiter = new Scanner(fileChooser.getSelectedFile()).useDelimiter("\\Z")) {
 						String content = useDelimiter.next();
 						textSong.setText(content);
-						useDelimiter.close();
-					} catch (IOException  e1) {
-						JOptionPane.showMessageDialog(new JFrame(), "Erro ao abrir arquivo", "ERRO", JOptionPane.ERROR_MESSAGE);
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(new JFrame(), "Erro ao abrir arquivo", "ERRO",
+								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -549,43 +539,51 @@ public class MainWindow {
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 					String text = textSong.getText();
 					File file = fileChooser.getSelectedFile();
-					try {
-
+					if (!file.exists()) {
+						String path = file.getAbsolutePath();
+						int indexDot = path.indexOf('.');
+						if (indexDot == -1) {
+							path = path + ".txt";
+							file = new File(path);
+						} else if (path.length() - 1 == indexDot) {
+							path = path.substring(0, path.lastIndexOf('.')) + ".txt";
+							file = new File(path);
+						}
 						if (!file.exists()) {
-							String path = file.getAbsolutePath();
-							int indexDot = path.indexOf('.');
-							if (indexDot == -1) {
-								path =  path + ".txt";
-								file = new File(path);
-							} else if (path.length() - 1 == indexDot) {
-								path = path.substring(0, path.lastIndexOf('.')) + ".txt";
-								file = new File(path);
-							}
-							if (!file.exists()) {
-								file.createNewFile();
-								BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
-								bw.write(text); 
-								bw.close();
-							} else {
-								int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?", "Arquivo j� existe", JOptionPane.YES_NO_OPTION, 
-										JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "N�o",}, null);
-								if (response == 0) {
-									BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
-									bw.write(text); 
-									bw.close();
-								}
+							try (BufferedWriter bw = new BufferedWriter(
+									new FileWriter(file.getAbsoluteFile(), false))) {
+								bw.write(text);
+							} catch (IOException e1) {
+								JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO",
+										JOptionPane.ERROR_MESSAGE);
 							}
 						} else {
-							int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?", "Arquivo j� existe", JOptionPane.YES_NO_OPTION, 
-									JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "N�o",}, null);
+							int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
+									"Arquivo j� existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+									new String[] { "Sim", "N�o", }, null);
 							if (response == 0) {
-								BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
-								bw.write(text); 
-								bw.close();
+								try (BufferedWriter bw = new BufferedWriter(
+										new FileWriter(file.getAbsoluteFile(), false))) {
+									bw.write(text);
+								} catch (IOException e2) {
+									JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO",
+											JOptionPane.ERROR_MESSAGE);
+								}
 							}
 						}
-					} catch (IOException e1) {
-						JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO", JOptionPane.ERROR_MESSAGE);
+					} else {
+						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
+								"Arquivo j� existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+								new String[] { "Sim", "N�o", }, null);
+						if (response == 0) {
+							try (BufferedWriter bw = new BufferedWriter(
+									new FileWriter(file.getAbsoluteFile(), false))) {
+								bw.write(text);
+							} catch (IOException e3) {
+								JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO",
+										JOptionPane.ERROR_MESSAGE);
+							}
+						}
 					}
 				}
 			}
@@ -596,40 +594,46 @@ public class MainWindow {
 		JFileChooser MIDIfileChooser = new JFileChooser();
 		MIDIfileChooser.setCurrentDirectory(new File("."));
 		MIDIfileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		FileNameExtensionFilter MIDIFilter = new FileNameExtensionFilter("MIDI files (*.MIDI)", "MIDI");
-        MIDIfileChooser.setAcceptAllFileFilterUsed(false);
+		FileNameExtensionFilter MIDIFilter = new FileNameExtensionFilter("MIDI files (*.midi)", "midi");
+		MIDIfileChooser.setAcceptAllFileFilterUsed(false);
 		MIDIfileChooser.setFileFilter(MIDIFilter);
 		menuItemSaveMidi.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			int userSelection = MIDIfileChooser.showSaveDialog(frame);
-			if (userSelection == JFileChooser.APPROVE_OPTION) {
-				File file = MIDIfileChooser.getSelectedFile();
-				try {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int userSelection = MIDIfileChooser.showSaveDialog(frame);
+				if (userSelection == JFileChooser.APPROVE_OPTION) {
+					File file = MIDIfileChooser.getSelectedFile();
 					String path = file.getAbsolutePath();
 					int indexDot = path.indexOf('.');
 					if (indexDot == -1) {
-						path =  path + ".MIDI";
+						path = path + ".midi";
 						file = new File(path);
-					} else{
-						path = path.substring(0, path.lastIndexOf('.')) + ".MIDI";
+					} else {
+						path = path.substring(0, path.lastIndexOf('.')) + ".midi";
 						file = new File(path);
 					}
 					if (!file.exists()) {
-						file.createNewFile();
-						new TCPlayer().save(InputConverter.convert(textSong.getText()),file);
+						try (FileOutputStream stream = new FileOutputStream(file)) {
+							new TCPlayer().save(InputConverter.convert(textSong.getText()), stream);
+						} catch (IOException e1) {
+							JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO",
+									JOptionPane.ERROR_MESSAGE);
+						}
 					} else {
-						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?", "Arquivo j� existe", JOptionPane.YES_NO_OPTION, 
-								JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "N�o",}, null);
+						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
+								"Arquivo j� existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+								new String[] { "Sim", "N�o", }, null);
 						if (response == 0) {
-							new TCPlayer().save(InputConverter.convert(textSong.getText()), file);
+							try (FileOutputStream stream = new FileOutputStream(file)) {
+								new TCPlayer().save(InputConverter.convert(textSong.getText()), stream);
+							} catch (IOException e1) {
+								JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO",
+										JOptionPane.ERROR_MESSAGE);
+							}
 						}
 					}
-				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-		}
 		});
 
 		JMenuItem menuItemHelp = new JMenuItem("Ajuda");
@@ -648,6 +652,6 @@ public class MainWindow {
 				aboutWindow.createWindow();
 			}
 		});
-		menuBar.add(menuItemAbout);	
+		menuBar.add(menuItemAbout);
 	}
 }
