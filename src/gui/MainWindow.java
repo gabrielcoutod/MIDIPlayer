@@ -39,6 +39,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.event.ChangeEvent;
 import gui.Help;
 import gui.About;
@@ -515,6 +516,8 @@ public class MainWindow {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File("."));
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("TXT files (*.txt)", "txt");
+		fileChooser.setFileFilter(extFilter);
 
 		JMenuItem menuItemOpenTextFile = new JMenuItem("Abrir arquivo de texto");
 		fileMenu.add(menuItemOpenTextFile);
@@ -549,12 +552,31 @@ public class MainWindow {
 					try {
 
 						if (!file.exists()) {
-							file.createNewFile();
-							BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
-							bw.write(text); 
-							bw.close();
+							String path = file.getAbsolutePath();
+							int indexDot = path.indexOf('.');
+							if (indexDot == -1) {
+								path =  path + ".txt";
+								file = new File(path);
+							} else if (path.length() - 1 == indexDot) {
+								path = path.substring(0, path.lastIndexOf('.')) + ".txt";
+								file = new File(path);
+							}
+							if (!file.exists()) {
+								file.createNewFile();
+								BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
+								bw.write(text); 
+								bw.close();
+							} else {
+								int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?", "Arquivo j� existe", JOptionPane.YES_NO_OPTION, 
+										JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "N�o",}, null);
+								if (response == 0) {
+									BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
+									bw.write(text); 
+									bw.close();
+								}
+							}
 						} else {
-							int response = JOptionPane.showOptionDialog(new JFrame(), "sobrescrever arquivo?", "Arquivo j� existe", JOptionPane.YES_NO_OPTION, 
+							int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?", "Arquivo j� existe", JOptionPane.YES_NO_OPTION, 
 									JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "N�o",}, null);
 							if (response == 0) {
 								BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), false));
@@ -571,6 +593,44 @@ public class MainWindow {
 
 		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar m\u00FAsica");
 		fileMenu.add(menuItemSaveMidi);
+		JFileChooser MIDIfileChooser = new JFileChooser();
+		MIDIfileChooser.setCurrentDirectory(new File("."));
+		MIDIfileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		FileNameExtensionFilter MIDIFilter = new FileNameExtensionFilter("MIDI files (*.MIDI)", "MIDI");
+        MIDIfileChooser.setAcceptAllFileFilterUsed(false);
+		MIDIfileChooser.setFileFilter(MIDIFilter);
+		menuItemSaveMidi.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			int userSelection = MIDIfileChooser.showSaveDialog(frame);
+			if (userSelection == JFileChooser.APPROVE_OPTION) {
+				File file = MIDIfileChooser.getSelectedFile();
+				try {
+					String path = file.getAbsolutePath();
+					int indexDot = path.indexOf('.');
+					if (indexDot == -1) {
+						path =  path + ".MIDI";
+						file = new File(path);
+					} else{
+						path = path.substring(0, path.lastIndexOf('.')) + ".MIDI";
+						file = new File(path);
+					}
+					if (!file.exists()) {
+						file.createNewFile();
+						new TCPlayer().save(InputConverter.convert(textSong.getText()),file);
+					} else {
+						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?", "Arquivo j� existe", JOptionPane.YES_NO_OPTION, 
+								JOptionPane.PLAIN_MESSAGE, null, new String[] {"Sim", "N�o",}, null);
+						if (response == 0) {
+							new TCPlayer().save(InputConverter.convert(textSong.getText()), file);
+						}
+					}
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(new JFrame(), "Erro ao escrever arquivo", "ERRO", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		}
+		});
 
 		JMenuItem menuItemHelp = new JMenuItem("Ajuda");
 		menuItemHelp.addActionListener(new ActionListener() {

@@ -83,9 +83,8 @@ public class TCPlayer {
     	player.play(fullSong);
     }
 
-    public void save(Symbol[] music, String fileName) throws IOException {
+    public void save(Symbol[] music, File file) throws IOException {
         symbolsToMidiString(music);
-        File file = new File(fileName);
         MidiFileManager.savePatternToMidi(fullSong, file);
     }
 }
