@@ -41,9 +41,10 @@ public class About extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JTextPane txtpnDesenvolvidoPorEduardo = new JTextPane();
-		txtpnDesenvolvidoPorEduardo.setText("Desenvolvido por:\r\n\tEduardo E. Kussler\r\n\tGabriel C. Domingues\r\n\tPedro F. C. Da silva\r\n\tThiago S. Lermen\r\n\r\nUFRGS - Universidade Federal do Rio Grande do Sul\r\nT\u00E9cnicas de Constru\u00E7\u00E3o De Programas - Prof\u00BA Marcelo Soares Pimenta\r\n2020/2");
+		txtpnDesenvolvidoPorEduardo.setText(
+				"Desenvolvido por:\r\n\tEduardo E. Kussler\r\n\tGabriel C. Domingues\r\n\tPedro F. C. Da silva\r\n\tThiago S. Lermen\r\n\r\nUFRGS - Universidade Federal do Rio Grande do Sul\r\nT\u00E9cnicas de Constru\u00E7\u00E3o De Programas - Prof\u00BA Marcelo Soares Pimenta\r\n2020/2");
 		txtpnDesenvolvidoPorEduardo.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		txtpnDesenvolvidoPorEduardo.setBackground(UIManager.getColor("SplitPane.background"));
 		txtpnDesenvolvidoPorEduardo.setEditable(false);

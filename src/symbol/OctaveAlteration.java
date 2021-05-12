@@ -1,16 +1,18 @@
 package symbol;
 
+import player.TCPlayer;
+
 //Symbol from input text that represents the octave change.
 public class OctaveAlteration extends Symbol {
-    private int difference;
+	private int difference;
 
-    public OctaveAlteration(int value) {
-    	this.difference = value;
-    }
+	public OctaveAlteration(int value) {
+		this.difference = value;
+	}
 
-    public int getDifference() {
-    	return difference;
-    }
+	public int getDifference() {
+		return difference;
+	}
 
 	@Override
 	public int hashCode() {
@@ -33,5 +35,9 @@ public class OctaveAlteration extends Symbol {
 			return false;
 		return true;
 	}
-    
+
+	public void alterPlayer(TCPlayer player) {
+		player.setOctave(player.getOctave() + difference);
+	}
+
 }

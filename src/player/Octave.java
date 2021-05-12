@@ -1,38 +1,29 @@
 package player;
-
-import symbol.OctaveAlteration;
-import symbol.OctaveIncrementAlteration;
-
 //Represents an octave.
 public class Octave {
- private static final int defaultOctave = 0;
- private static final int maxOctave = 5;
- private static final int minOctave = -5;
- 
- private int octave;
+	public static final int defaultOctave = 0;
+	public static final int maxOctave = 10;
+	public static final int minOctave = 0;
 
- public Octave(int octave) {
-	 this.octave = octave;
- }
- public Octave() {
-	 this.octave = defaultOctave;
- }
+	private int octave;
 
- public void update(OctaveIncrementAlteration alterOctave) {
-	 octave += 1;
-	 if(octave > maxOctave)
-		 octave = minOctave;
- }
- 
- public void update(OctaveAlteration octaveAlteration) {
-	 octave += octaveAlteration.getDifference();
-	 if(octave > maxOctave)
-	 	 octave = maxOctave;
-	 else if (octave < minOctave)
-		 octave = minOctave;
- }
+	public Octave(int octave) {
+		this.octave = octave;
+	}
 
- public int getOctave() {
-	 return octave;
- }
+	public Octave() {
+		this.octave = defaultOctave;
+	}
+
+	public int getOctave() {
+		return octave;
+	}
+
+	public void setOctave(int newOctave) {
+		octave = newOctave;
+		if (octave > maxOctave)
+			octave = maxOctave;
+		else if (octave < minOctave)
+			octave = minOctave;
+	}
 }

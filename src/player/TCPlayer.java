@@ -1,14 +1,6 @@
 package player;
 
-import symbol.BPMAlteration;
-import symbol.InstrumentAlteration;
-import symbol.InstrumentRelativeAlteration;
-import symbol.Note;
-import symbol.OctaveAlteration;
-import symbol.OctaveIncrementAlteration;
 import symbol.Symbol;
-import symbol.VolumeAlteration;
-import symbol.VolumeDoubleAlteration;
 import java.io.File;
 import java.io.IOException;
 import org.jfugue.player.Player;
@@ -19,98 +11,76 @@ import org.jfugue.midi.MidiFileManager;
 //determines the parameters of the music and plays/saves it.
 
 public class TCPlayer {
- private Octave octave;
- private BPM bpm;
- private Volume volume;
- private Instrument instrument;
- private Player player;
- private Pattern fullSong;
+    private BPM bpm;
+    private Octave octave;
+    private Instrument instrument;
+    private Volume volume;
+    private Player player;
+    private Pattern fullSong;
 
- public TCPlayer() {
-	 
- }
+    public TCPlayer() {
 
- public TCPlayer(int octave, int bpm, int volume, int instrument) {
-     this.octave = new Octave(octave);
-     this.bpm = new BPM(bpm);
-     this.volume = new Volume(volume);
-     this.instrument = new Instrument(instrument);
-     this.fullSong = new Pattern();
-     this.player = new Player();
- }
+    }
 
- // Updates and changes the music's Tempo (BPM)
- private void action(BPMAlteration alteration, Pattern fullSong) {
-    bpm.update(alteration);
- }
+    public TCPlayer(int octave, int bpm, int volume, int instrument) {
+        this.octave = new Octave(octave);
+        this.bpm = new BPM(bpm);
+        this.volume = new Volume(volume);
+        this.instrument = new Instrument(instrument);
+        this.fullSong = new Pattern();
+        this.player = new Player();
+    }
 
-private void action(InstrumentAlteration alteration) {
-    instrument.update(alteration);
-}
+    public void setBPM(int newBPM) {
+        bpm.setBPM(newBPM);
+    }
 
-private void action(InstrumentRelativeAlteration alteration){
-    instrument.update(alteration);
-}
+    public int getBPM() {
+        return bpm.getBPM();
+    }
 
-private void action(Note note) {
-    Pattern updateSong = new Pattern().setTempo(bpm.getBPM());
-    updateSong.add(":CON(7, " + volume.getVolume() + ")");
-    updateSong.add("I" + instrument.getInstrument());
-    updateSong.add(note.toString() + octave.getOctave());
-    fullSong.add(updateSong);
- }
+    public void setOctave(int newOctave) {
+        octave.setOctave(newOctave);
+    }
 
-private void action(OctaveAlteration alteration) {
-     octave.update(alteration);
-}
+    public int getOctave() {
+        return octave.getOctave();
+    }
 
-private void action(OctaveIncrementAlteration alteration){
-    octave.update(alteration);
-}
+    public void setInstrument(int newInstrument) {
+        instrument.setInstrument(newInstrument);
+    }
 
-// Updated and changes the music's Volume
-private void action(VolumeAlteration alteration) {
-    volume.update(alteration);	 
-}
+    public int getInstrument() {
+        return instrument.getInstrument();
+    }
 
-private void action(VolumeDoubleAlteration alteration) {
-    volume.update(alteration);
-}
+    public void setVolume(int newVolume) {
+        volume.setVolume(newVolume);
+    }
 
-private void play(Symbol[] music) {
-	 
-}
+    public int getVolume() {
+        return volume.getVolume();
+    }
 
-public void save(Symbol[] music, String fileName) throws IOException{
-    File file = new File(fileName);
-    MidiFileManager.savePatternToMidi(fullSong, file);
-}
+    public void addToSong(Pattern updateSong) {
+        fullSong.add(updateSong);
+    }
 
-// public static void main(String[] args) {
-	 
-// 	 Player player = new Player();
-// 	 Pattern fullSong = new Pattern();
-// 	 Pattern p1 = new Pattern().setTempo(100);
-// 	 p1.add(":CON(7, 127)");
-// 	 p1.add("I0");
-// 	 p1.add("C5");
-// 	 Pattern p2 = new Pattern().setTempo(100);
-// 	 p2.add(":CON(7, 127)");
-// 	 p2.add("I0");
-// 	 p2.add("G5");
-// 	 Pattern p3 = new Pattern().setTempo(100);
-// 	 p3.add(":CON(7, 127)");
-// 	 p3.add("I0");
-// 	 p3.add("C-4");
-// 	 Pattern p4 = new Pattern().setTempo(100);
-// 	 p4.add(":CON(7, 127)");
-// 	 p4.add("I0");
-// 	 p4.add("G5");
-// 	 fullSong.add(p1);
-// 	 fullSong.add(p2);
-// 	 fullSong.add(p3);
-// 	 fullSong.add(p4);
-// 	 player.play(fullSong);
-	 
-// }
+    private void symbolsToMidiString(Symbol[] music) {
+        for(Symbol symbol: music){
+            symbol.alterPlayer(this);
+        }    
+    }
+
+    public void play(Symbol[] music) {
+        symbolsToMidiString(music);
+        player.play(fullSong);
+    }
+
+    public void save(Symbol[] music, String fileName) throws IOException {
+        symbolsToMidiString(music);
+        File file = new File(fileName);
+        MidiFileManager.savePatternToMidi(fullSong, file);
+    }
 }

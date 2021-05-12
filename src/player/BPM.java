@@ -1,32 +1,30 @@
 package player;
 
-import symbol.BPMAlteration;
-
 //Represents a BPM.
 public class BPM {
- private static final int defaultBPM = 50;
- private static final int maxBPM = 1000;
- private static final int minBPM = 50;
+	public static final int defaultBPM = 120;
+	public static final int maxBPM = 220;
+	public static final int minBPM = 40;
 
- private int bpm;
+	private int bpm;
 
- public BPM(int bpm) {
-	 this.bpm = bpm;
- }
- 
- public BPM() {
-	 this.bpm = defaultBPM;
- }
+	public BPM(int bpm) {
+		this.bpm = bpm;
+	}
 
- public void update(BPMAlteration BPMAlteration) {
-	 bpm += BPMAlteration.getDifference();
-	 if (bpm > maxBPM)
-		 bpm = maxBPM;
-	else if (bpm < minBPM)
-		bpm = minBPM;
- }
+	public BPM() {
+		this.bpm = defaultBPM;
+	}
 
- public int getBPM() {
-	 return bpm;
- }
+	public void setBPM(int newBPM) {
+		bpm = newBPM;
+		if (bpm > maxBPM)
+			bpm = maxBPM;
+		else if (bpm < minBPM)
+			bpm = minBPM;
+	}
+
+	public int getBPM() {
+		return bpm;
+	}
 }

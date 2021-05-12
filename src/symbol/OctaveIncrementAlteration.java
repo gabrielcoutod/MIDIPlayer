@@ -1,6 +1,9 @@
 package symbol;
 
-public class OctaveIncrementAlteration extends Symbol{
+import player.TCPlayer;
+import player.Octave;
+
+public class OctaveIncrementAlteration extends Symbol {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -10,5 +13,13 @@ public class OctaveIncrementAlteration extends Symbol{
 		if (getClass() != obj.getClass())
 			return false;
 		return true;
+	}
+
+	public void alterPlayer(TCPlayer player) {
+		int newOctave = player.getOctave() + 1;
+		if (newOctave > Octave.maxOctave)
+			player.setOctave(Octave.minOctave);
+		else
+			player.setOctave(newOctave);
 	}
 }

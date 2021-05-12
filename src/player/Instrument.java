@@ -1,36 +1,30 @@
 package player;
 
-import symbol.InstrumentAlteration;
-import symbol.InstrumentRelativeAlteration;
-
 //Represents an Instrument.
 public class Instrument {
-    private static final int defaultInstrument = 7;
-    private static final int maxInstrument = 200;
-    private static final int minInstrument = 0;
-    
+    public static final int defaultInstrument = 7;
+    public static final int maxInstrument = 200;
+    public static final int minInstrument = 0;
+
     private int instrument;
 
     public Instrument(int instrument) {
-    	this.instrument = instrument;
-    }
-    public Instrument() {
-    	this.instrument = defaultInstrument;
+        this.instrument = instrument;
     }
 
-    public void update(InstrumentAlteration instrumentAlteration) {
-    	instrument = instrumentAlteration.getInstrument();
+    public Instrument() {
+        this.instrument = defaultInstrument;
     }
-    
-    public void update(InstrumentRelativeAlteration instrumentAlteration) {
-    	instrument += instrumentAlteration.getDifference();
-    	if (instrument > maxInstrument)
-    		 instrument = maxInstrument;
+
+    public void setInstrument(int newInstrument) {
+        instrument = newInstrument;
+        if (instrument > maxInstrument)
+            instrument = maxInstrument;
         else if (instrument < minInstrument)
-             instrument = minInstrument;
+            instrument = minInstrument;
     }
 
     public int getInstrument() {
-    	return instrument;
+        return instrument;
     }
 }
