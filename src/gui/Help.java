@@ -28,6 +28,7 @@ public class Help extends JFrame {
 			public void run() {
 				try {
 					Help frame = new Help();
+					frame.setTitle("Ajuda");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

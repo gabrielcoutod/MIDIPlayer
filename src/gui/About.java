@@ -23,6 +23,7 @@ public class About extends JFrame {
 			public void run() {
 				try {
 					About frame = new About();
+					frame.setTitle("Sobre");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

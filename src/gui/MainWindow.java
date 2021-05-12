@@ -131,7 +131,7 @@ public class MainWindow {
 	private void initialize() {
 		// Frame code
 		
-		frame = new JFrame();
+		frame = new JFrame("MIDI Player");
 		frame.setBounds(100, 100, 914, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -497,6 +497,8 @@ public class MainWindow {
 					Random rand = new Random();
 				    String randomNote = notesList.get(rand.nextInt(notesList.size()));
 				    textSong.append(randomNote);
+				} else if(checkBoxPause.isSelected()) {
+					textSong.append("P");
 				}
 			}
 		});
@@ -509,6 +511,10 @@ public class MainWindow {
 
 		JMenu fileMenu = new JMenu("Arquivo");
 		menuBar.add(fileMenu);
+		fileMenu.setUI(new JMenuItem("Arquivo").getUI());
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File("."));
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
 		JMenuItem menuItemOpenTextFile = new JMenuItem("Abrir arquivo de texto");
 		fileMenu.add(menuItemOpenTextFile);
@@ -516,9 +522,6 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setCurrentDirectory(new File("."));
-				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				int userSelection = fileChooser.showOpenDialog(frame);
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 					try {
@@ -539,10 +542,6 @@ public class MainWindow {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setCurrentDirectory(new File("."));
-				fileChooser.setDialogTitle("Salvar");
-				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 				int userSelection = fileChooser.showSaveDialog(frame);
 				if (userSelection == JFileChooser.APPROVE_OPTION) {
 					String text = textSong.getText();
@@ -589,8 +588,6 @@ public class MainWindow {
 				aboutWindow.createWindow();
 			}
 		});
-		menuBar.add(menuItemAbout);
-
-
+		menuBar.add(menuItemAbout);	
 	}
 }
