@@ -34,12 +34,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.event.ChangeEvent;
 import gui.Help;
@@ -344,8 +348,11 @@ public class MainWindow {
 				lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
 			}
 		});
-		sliderBPM.setMinimum(50);
-		sliderBPM.setMaximum(1000);
+		sliderBPM.setValue(0);
+		sliderBPM.setMinimum(-50);
+		sliderBPM.setMaximum(50);
+		sliderBPM.setMajorTickSpacing(50);
+		sliderBPM.setSnapToTicks(true);
 		sliderBPM.setBounds(10, 69, 200, 22);
 		optionsPanel.add(sliderBPM);
 
@@ -371,8 +378,8 @@ public class MainWindow {
 			}
 		});
 		sliderOctave.setValue(0);
-		sliderOctave.setMinimum(-5);
-		sliderOctave.setMaximum(5);
+		sliderOctave.setMinimum(-1);
+		sliderOctave.setMaximum(1);
 		sliderOctave.setBounds(10, 141, 200, 22);
 		optionsPanel.add(sliderOctave);
 
@@ -392,7 +399,11 @@ public class MainWindow {
 				lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
 			}
 		});
-		sliderVolume.setValue(10);
+		sliderVolume.setValue(0);
+		sliderVolume.setMaximum(10);
+		sliderVolume.setMinimum(-10);
+		sliderVolume.setMajorTickSpacing(10);
+		sliderVolume.setSnapToTicks(true);
 		sliderVolume.setBounds(10, 201, 200, 22);
 		optionsPanel.add(sliderVolume);
 
@@ -415,7 +426,8 @@ public class MainWindow {
 
 		JComboBox comboBoxInstruments = new JComboBox();
 		comboBoxInstruments.setModel(
-				new DefaultComboBoxModel(new String[] { "Agogo", "Piano", "Sinos", "Flauta", "\u00D3rg\u00E3o" }));
+				new DefaultComboBoxModel(new String[] {"Atual", "Piano", "Agogo", "Sinos", "Flauta", "\u00D3rg\u00E3o" }));
+		String[] instrumentsArray = {"O", "!", "\n", ";", ","};
 		comboBoxInstruments.setBounds(97, 261, 113, 23);
 		optionsPanel.add(comboBoxInstruments);
 
@@ -442,7 +454,9 @@ public class MainWindow {
 		textSong.setWrapStyleWord(true);
 		textSong.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		songTextPane.setViewportView(textSong);
-
+		textSong.addInputMethodListener(null);
+	
+		
 		JButton btnPlaySong = new JButton("Tocar");
 		btnPlaySong.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnPlaySong.setBounds(328, 61, 85, 36);
@@ -492,6 +506,40 @@ public class MainWindow {
 				} else if (checkBoxPause.isSelected()) {
 					textSong.append("P");
 				}
+			}
+		});
+		
+		btnUpdate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(sliderBPM.getValue() != 0) {
+					if(sliderBPM.getValue() > 0)
+						textSong.append("BPM+");
+					else
+						textSong.append("BPM-");
+					sliderBPM.setValue(0);
+				}
+				if(sliderVolume.getValue() != 0) {
+					if(sliderVolume.getValue() > 0)
+						textSong.append("+");
+					else
+						textSong.append("-");
+					sliderVolume.setValue(0);
+				}
+				if(sliderOctave.getValue() != 0){
+					if(sliderOctave.getValue() > 0)
+						textSong.append("T+");
+					else
+						textSong.append("T-");
+					sliderOctave.setValue(0);
+				}
+				if(comboBoxInstruments.getSelectedIndex() != 0) {
+					textSong.append(instrumentsArray[comboBoxInstruments.getSelectedIndex() - 1]);
+					comboBoxInstruments.setSelectedIndex(0);
+				}
+				
+				
 			}
 		});
 
