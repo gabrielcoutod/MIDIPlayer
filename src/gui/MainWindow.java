@@ -318,9 +318,6 @@ public class MainWindow {
 		panel.add(optionsPanel);
 		optionsPanel.setLayout(null);
 
-		// TODO
-		// Import Max and Min of the sliders
-		// from the classes that handle that
 
 		JLabel lblOptions = new JLabel("Op\u00E7\u00F5es");
 		lblOptions.setFont(new Font("Noto Sans", Font.PLAIN, 14));
