@@ -14,6 +14,7 @@ class BPMAlterationTest {
 	private TCPlayer player = new TCPlayer();
 
 	@Test
+	// Test for positive alteration
 	void BPMPositiveAlterationTest() {
 		int initialBPM = player.getBPM();
 		new BPMAlteration(BPMAlteration.positiveAlteration).alterPlayer(player);
@@ -22,6 +23,7 @@ class BPMAlterationTest {
 	}
 	
 	@Test
+	// Test for negative alteration
 	void BPMNegativeAlterationTest() {
 		int initialBPM = player.getBPM();
 		new BPMAlteration(BPMAlteration.negativeAlteration).alterPlayer(player);
@@ -30,6 +32,7 @@ class BPMAlterationTest {
 	}
 	
 	@Test
+	// Test for when the new value will be over the upper limit
 	void BPMPositiveAlterationOverTest() {
 		player.setBPM(BPM.maxBPM);
 		new BPMAlteration(BPMAlteration.positiveAlteration).alterPlayer(player);
@@ -38,6 +41,7 @@ class BPMAlterationTest {
 	}
 	
 	@Test
+	// Test for when the new value will be under the lower limit
 	void BPMNegativeAlterationUnderTest() {
 		player.setBPM(BPM.minBPM);
 		new BPMAlteration(BPMAlteration.negativeAlteration).alterPlayer(player);
@@ -46,6 +50,7 @@ class BPMAlterationTest {
 	}
 	
 	@Test
+	// Test to verify if the symbol doesn't change any other parameter
 	void onlyOneAlterationTest() {
 		int initialVolume = player.getVolume();
 		int initialInstrument = player.getInstrument();

@@ -7,12 +7,13 @@ import org.junit.jupiter.api.Test;
 import player.TCPlayer;
 import symbol.InstrumentAlteration;
 
-// Class for BPMAlteration tests
+// Class for InstrumentAlteration tests
 class InstrumentAlterationTest {
 	
 	private TCPlayer player = new TCPlayer();
 
 	@Test
+	// Test for Agogo change
 	void instrumentAlterationAgogoTest() {
 		player.setInstrument(InstrumentAlteration.churchOrgan);
 		new InstrumentAlteration(InstrumentAlteration.agogo).alterPlayer(player);
@@ -21,6 +22,7 @@ class InstrumentAlterationTest {
 	}
 	
 	@Test
+	// Test for Church Organ change
 	void instrumentAlterationChurchOrganTest() {
 		player.setInstrument(InstrumentAlteration.agogo);
 		new InstrumentAlteration(InstrumentAlteration.churchOrgan).alterPlayer(player);
@@ -29,6 +31,7 @@ class InstrumentAlterationTest {
 	}
 	
 	@Test
+	// Test for Hapsichord change
 	void instrumentAlterationHapsichordTest() {
 		player.setInstrument(InstrumentAlteration.churchOrgan);
 		new InstrumentAlteration(InstrumentAlteration.hapsichord).alterPlayer(player);
@@ -37,6 +40,7 @@ class InstrumentAlterationTest {
 	}
 	
 	@Test
+	// Test for Pan Flute change
 	void instrumentAlterationPanFluteTest() {
 		player.setInstrument(InstrumentAlteration.churchOrgan);
 		new InstrumentAlteration(InstrumentAlteration.panFlute).alterPlayer(player);
@@ -45,6 +49,7 @@ class InstrumentAlterationTest {
 	}
 	
 	@Test
+	// Test for Tubular Bells change
 	void instrumentAlterationTubularBellsTest() {
 		player.setInstrument(InstrumentAlteration.churchOrgan);
 		new InstrumentAlteration(InstrumentAlteration.tubularBells).alterPlayer(player);
@@ -54,6 +59,7 @@ class InstrumentAlterationTest {
 
 	
 	@Test
+	// Test to verify if the symbol doesn't change any other parameter
 	void onlyOneAlterationTest() {
 		int initialVolume = player.getVolume();
 		int initialBPM = player.getBPM();

@@ -8,12 +8,13 @@ import player.Instrument;
 import player.TCPlayer;
 import symbol.InstrumentRelativeAlteration;
 
-// Class for BPMAlteration tests
+// Class for InstrumentRelativeAlteration tests
 class InstrumentRelativeAlterationTest {
 	
 	private TCPlayer player = new TCPlayer();
 
 	@Test
+	// Test for positive alteration
 	void instrumentPositiveRelativeAlterationTest() {
 		int initialInstrument = player.getInstrument();
 		int change = 2;
@@ -23,6 +24,7 @@ class InstrumentRelativeAlterationTest {
 	}
 	
 	@Test
+	// Test for negative alteration
 	void instrumentNegativeRelativeAlterationTest() {
 		int initialInstrument = player.getInstrument();
 		int change = -3;
@@ -32,6 +34,7 @@ class InstrumentRelativeAlterationTest {
 	}
 	
 	@Test
+	// Test for when the new value will be over the upper limit
 	void instrumentPositiveRelativeAlterationOverTest() {
 		player.setInstrument(Instrument.maxInstrument);
 		int change = 4;
@@ -41,6 +44,7 @@ class InstrumentRelativeAlterationTest {
 	}
 	
 	@Test
+	// Test for when the new value will be under the lower limit
 	void instrumentNegativeRelativeAlterationUnderTest() {
 		player.setInstrument(Instrument.minInstrument);
 		int change = -5;
@@ -50,6 +54,7 @@ class InstrumentRelativeAlterationTest {
 	}
 	
 	@Test
+	// Test to verify if the symbol doesn't change any other parameter
 	void onlyOneAlterationTest() {
 		int initialVolume = player.getVolume();
 		int initialBPM = player.getBPM();
