@@ -18,30 +18,30 @@ import java.util.ArrayList;
 public class InputConverter {
 
 	// Constants
-	public static char aNote = 'A';
-	public static char cNote = 'C';
-	public static char dNote = 'D';
-	public static char eNote = 'E';
-	public static char fNote = 'F';
-	public static char gNote = 'G';
-	public static char pause = 'P';
-	public static char randomNote = 'R';
-	public static char positiveVolumeAlteration = '+';
-	public static char negativeVolumeAlteration = '-';
-	public static char volumeDoubleAlteration = ' ';
-	public static char agogo = '!';
-	public static char tubularBells = '\n';
-	public static char panFlute = ';';
-	public static char churchOrgan = ',';
-	public static ArrayList<Character> hapsichord = new ArrayList<Character>(Arrays.asList('i','o','u'));
-	public static String BPMpositiveAlteration = "BPM+";
-	public static String BPMnegativeAlteration = "BPM-";
-	public static char bSymbol = 'B';
-	public static char octaveChar= 'T';
-	public static char octavePositiveChar = '+';
-	public static char octaveNegativeChar = '-';
-	public static String octaveAlteration = "T+";
-	public static ArrayList<Character> octaveIncrementAlteration =  new ArrayList<Character>(Arrays.asList('.','?'));
+	public static final char aNote = 'A';
+	public static final char cNote = 'C';
+	public static final char dNote = 'D';
+	public static final char eNote = 'E';
+	public static final char fNote = 'F';
+	public static final char gNote = 'G';
+	public static final char pause = 'P';
+	public static final char randomNote = 'R';
+	public static final char positiveVolumeAlteration = '+';
+	public static final char negativeVolumeAlteration = '-';
+	public static final char volumeDoubleAlteration = ' ';
+	public static final char agogo = '!';
+	public static final char tubularBells = '\n';
+	public static final char panFlute = ';';
+	public static final char churchOrgan = ',';
+	public static final ArrayList<Character> hapsichord = new ArrayList<Character>(Arrays.asList('i','o','u'));
+	public static final String BPMpositiveAlteration = "BPM+";
+	public static final String BPMnegativeAlteration = "BPM-";
+	public static final char bSymbol = 'B';
+	public static final char octaveChar= 'T';
+	public static final char octavePositiveChar = '+';
+	public static final char octaveNegativeChar = '-';
+	public static final String octaveAlteration = "T+";
+	public static final ArrayList<Character> octaveIncrementAlteration =  new ArrayList<Character>(Arrays.asList('.','?'));
 	
 	
 	// The convert function takes text as input and returns a Symbol array that

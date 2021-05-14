@@ -6,8 +6,8 @@ import player.TCPlayer;
 public class OctaveAlteration extends Symbol {
 	
 	// Constants
-	public static int positiveAlteration = 1;
-	public static int negativeAlteration = -1;
+	public static final int positiveAlteration = 1;
+	public static final int negativeAlteration = -1;
 	
 	// Attribute for the alteration
 	private int difference;

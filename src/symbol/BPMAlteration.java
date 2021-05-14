@@ -6,8 +6,8 @@ import player.TCPlayer;
 public class BPMAlteration extends Symbol {
 	
 	// Constants
-	public static int positiveAlteration = 50;
-	public static int negativeAlteration = -50;
+	public static final int positiveAlteration = 50;
+	public static final int negativeAlteration = -50;
 	
 	// Attribute for the alteration
 	private int difference;

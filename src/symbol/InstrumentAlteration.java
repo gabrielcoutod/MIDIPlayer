@@ -6,11 +6,11 @@ import player.TCPlayer;
 public class InstrumentAlteration extends Symbol {
 	
 	// Constants
-	public static int hapsichord = 6;
-	public static int agogo = 113;
-	public static int tubularBells = 14;
-	public static int panFlute = 75;
-	public static int churchOrgan = 19;
+	public static final int hapsichord = 6;
+	public static final int agogo = 113;
+	public static final int tubularBells = 14;
+	public static final int panFlute = 75;
+	public static final int churchOrgan = 19;
 	
 	// Attribute for the alteration
 	private int newInstrument;

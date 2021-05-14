@@ -6,8 +6,8 @@ import player.TCPlayer;
 public class VolumeAlteration extends Symbol {
 	
 	// Constants
-	public static int positiveAlteration = 10;
-	public static int negativeAlteration = -10;
+	public static final int positiveAlteration = 10;
+	public static final int negativeAlteration = -10;
 	
 	// Attribute for the alteration
 	private int difference;
