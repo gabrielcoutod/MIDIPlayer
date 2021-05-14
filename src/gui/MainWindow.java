@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -326,7 +327,7 @@ public class MainWindow {
 
 		// Labels and Slider for BPM
 
-		JLabel lblBPM = new JLabel("BPM =");
+		JLabel lblBPM = new JLabel("BPM");
 		lblBPM.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblBPM.setBounds(10, 46, 46, 23);
 		optionsPanel.add(lblBPM);
@@ -336,13 +337,19 @@ public class MainWindow {
 		JLabel lblBPMValue = new JLabel("");
 		lblBPMValue.setLabelFor(sliderBPM);
 		lblBPMValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblBPMValue.setBounds(52, 46, 46, 23);
+		lblBPMValue.setBounds(40, 46, 46, 23);
 		lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
 		optionsPanel.add(lblBPMValue);
 
 		sliderBPM.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
+				int change = sliderBPM.getValue();
+				boolean passedHalf = (change/(25 + 1) != 0);
+				if (!passedHalf) {
+					lblBPMValue.setText("atual");
+				} else {
+					lblBPMValue.setText(String.format("%+d", change/Math.abs(change) * 50));
+				}
 			}
 		});
 		sliderBPM.setValue(0);
@@ -360,18 +367,23 @@ public class MainWindow {
 		JLabel lblOctaveValue = new JLabel("");
 		lblOctaveValue.setLabelFor(sliderOctave);
 		lblOctaveValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblOctaveValue.setBounds(64, 108, 55, 23);
+		lblOctaveValue.setBounds(50, 108, 55, 23);
 		lblOctaveValue.setText(Integer.toString(sliderOctave.getValue()));
 		optionsPanel.add(lblOctaveValue);
 
-		JLabel lblOctave = new JLabel("Oitava = ");
+		JLabel lblOctave = new JLabel("Oitava");
 		lblOctave.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblOctave.setBounds(10, 108, 55, 23);
 		optionsPanel.add(lblOctave);
 
 		sliderOctave.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblOctaveValue.setText(Integer.toString(sliderOctave.getValue()));
+				int change = sliderOctave.getValue();
+				if (change == 0) {
+					lblOctaveValue.setText("atual");
+				} else {
+					lblOctaveValue.setText(String.format("%+d", change));
+				}
 			}
 		});
 		sliderOctave.setValue(0);
@@ -387,13 +399,19 @@ public class MainWindow {
 		JLabel lblVolumeValue = new JLabel("");
 		lblVolumeValue.setLabelFor(sliderVolume);
 		lblVolumeValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblVolumeValue.setBounds(64, 173, 62, 23);
+		lblVolumeValue.setBounds(56, 173, 62, 23);
 		lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
 		optionsPanel.add(lblVolumeValue);
 
 		sliderVolume.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
+				int change = sliderVolume.getValue();
+				boolean passedHalf = (change/(5 + 1) != 0);
+				if (!passedHalf) {
+					lblVolumeValue.setText("atual");
+				} else {
+					lblVolumeValue.setText(String.format("%+d", change/Math.abs(change) * 10));
+				}
 			}
 		});
 		sliderVolume.setValue(0);
@@ -404,7 +422,7 @@ public class MainWindow {
 		sliderVolume.setBounds(10, 201, 200, 22);
 		optionsPanel.add(sliderVolume);
 
-		JLabel lblVolume = new JLabel("Volume = ");
+		JLabel lblVolume = new JLabel("Volume");
 		lblVolume.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblVolume.setBounds(10, 173, 62, 23);
 		optionsPanel.add(lblVolume);
@@ -543,11 +561,14 @@ public class MainWindow {
 		// Menu bar code
 
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 275, 22);
+		JMenuBar fileMenuBar = new JMenuBar();
+		fileMenuBar.setBounds(0, 0, 60, 22);
+		menuBar.setBounds(60, 0,120, 22);
+		panel.add(fileMenuBar);
 		panel.add(menuBar);
 
 		JMenu fileMenu = new JMenu("Arquivo");
-		menuBar.add(fileMenu);
+		fileMenuBar.add(fileMenu);
 		fileMenu.setUI(new JMenuItem("Arquivo").getUI());
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File("."));
