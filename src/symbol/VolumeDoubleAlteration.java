@@ -4,8 +4,9 @@ import player.TCPlayer;
 import player.Volume;
 
 //Symbol from input text that represents the change to 
-//default volume or double the current volume.
+// double the current volume.
 public class VolumeDoubleAlteration extends Symbol {
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -16,10 +17,11 @@ public class VolumeDoubleAlteration extends Symbol {
 		return true;
 	}
 
+	// Alteration
 	public void alterPlayer(TCPlayer player) {
 		int newVolume = 2 * player.getVolume();
 		if (newVolume > Volume.maxVolume)
-			player.setVolume(Volume.minVolume);
+			player.setVolume(Volume.defaultVolume);
 		else
 			player.setVolume(newVolume);
 	}

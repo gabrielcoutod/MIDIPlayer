@@ -2,14 +2,25 @@ package symbol;
 
 import player.TCPlayer;
 
-// Symbol from input text that represents the instrument change.
+// Symbol from input text that represents an instrument change.
 public class InstrumentAlteration extends Symbol {
+	
+	// Constants
+	public static int hapsichord = 6;
+	public static int agogo = 113;
+	public static int tubularBells = 14;
+	public static int panFlute = 75;
+	public static int churchOrgan = 19;
+	
+	// Attribute for the alteration
 	private int newInstrument;
 
+	// Argument constructor
 	public InstrumentAlteration(int instrument) {
 		this.newInstrument = instrument;
 	}
 
+	// Getter
 	public int getInstrument() {
 		return newInstrument;
 	}
@@ -36,6 +47,7 @@ public class InstrumentAlteration extends Symbol {
 		return true;
 	}
 
+	// Alteration
 	public void alterPlayer(TCPlayer player) {
 		player.setInstrument(newInstrument);
 	}

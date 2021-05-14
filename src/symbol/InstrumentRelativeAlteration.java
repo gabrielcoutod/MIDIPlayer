@@ -2,14 +2,18 @@ package symbol;
 
 import player.TCPlayer;
 
-// Symbol from input text that represents the instrument change.
+// Symbol from input text that represents a relative instrument change.
 public class InstrumentRelativeAlteration extends Symbol {
+	
+	// Attribute for the alteration
 	private int difference;
 
+	// Argument constructor
 	public InstrumentRelativeAlteration(int difference) {
 		this.difference = difference;
 	}
 
+	// Getter
 	public int getDifference() {
 		return difference;
 	}
@@ -36,6 +40,7 @@ public class InstrumentRelativeAlteration extends Symbol {
 		return true;
 	}
 
+	// Alteration
 	public void alterPlayer(TCPlayer player) {
 		player.setInstrument(player.getInstrument() + difference);
 	}

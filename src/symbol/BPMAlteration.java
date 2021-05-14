@@ -2,14 +2,22 @@ package symbol;
 
 import player.TCPlayer;
 
-//Symbol from input text that represents the BPM change.
+//Symbol from input text that represents a BPM change.
 public class BPMAlteration extends Symbol {
+	
+	// Constants
+	public static int positiveAlteration = 50;
+	public static int negativeAlteration = -50;
+	
+	// Attribute for the alteration
 	private int difference;
 
+	// Argument constructor
 	public BPMAlteration(int value) {
 		this.difference = value;
 	}
 
+	// Getter
 	public int getDifference() {
 		return difference;
 	}
@@ -36,6 +44,7 @@ public class BPMAlteration extends Symbol {
 		return true;
 	}
 
+	// Alteration
 	public void alterPlayer(TCPlayer player) {
 		player.setBPM(player.getBPM() + difference);
 	}
