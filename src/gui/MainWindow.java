@@ -263,6 +263,7 @@ public class MainWindow {
 		frame.setBounds(WINDOW_START_X, WINDOW_START_Y, WINDOW_WIDTH, WINDOW_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setResizable(false);
 	}
 	
 	// Initializes panel
@@ -613,6 +614,7 @@ public class MainWindow {
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Arquivos TXT (*.txt)", "txt");
 		fileChooser.setFileFilter(extFilter);
+		fileChooser.setDialogTitle("Abrir");
 		
 		JMenuItem menuItemOpenTextFile = new JMenuItem("Abrir arquivo de texto");
 		fileMenu.add(menuItemOpenTextFile);
@@ -641,6 +643,7 @@ public class MainWindow {
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Arquivos TXT (*.txt)", "txt");
 		fileChooser.setFileFilter(extFilter);
+		fileChooser.setDialogTitle("Salvar");
 		
 		JMenuItem menuItemSaveTextFile = new JMenuItem("Salvar em arquivo de texto");
 		fileMenu.add(menuItemSaveTextFile);
@@ -713,6 +716,8 @@ public class MainWindow {
 		FileNameExtensionFilter MIDIFilter = new FileNameExtensionFilter("Arquivos MIDI (*.midi)", "midi");
 		MIDIfileChooser.setAcceptAllFileFilterUsed(false);
 		MIDIfileChooser.setFileFilter(MIDIFilter);
+		MIDIfileChooser.setDialogTitle("Salvar");
+		
 		menuItemSaveMidi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
