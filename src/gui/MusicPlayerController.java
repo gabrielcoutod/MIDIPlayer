@@ -1,7 +1,7 @@
 package gui;
 
 // Class for controlling the music player swing worker
-class MusicPlayerController {
+public class MusicPlayerController {
 	
 	// Attribute
 	private MusicPlayer musicPlayer = new MusicPlayer();

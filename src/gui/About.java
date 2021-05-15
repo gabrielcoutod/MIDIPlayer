@@ -9,13 +9,19 @@ import javax.swing.UIManager;
 import java.awt.Font;
 
 public class About extends JFrame {
+	
+	// Size of font
 	private final int FONTSIZE = 12;
 	
+	// Coordinates for the elements
+	
+	// About panel 
 	private final int ABOUTPANEL_START_X = 100;
 	private final int ABOUTPANEL_START_Y = 100;
 	private final int ABOUTPANEL_WIDTH = 438;
 	private final int ABOUTPANEL_HEIGHT = 225;
 	
+	// About text
 	private final int ABOUTEXT_START_X = 10;
 	private final int ABOUTEXT_START_Y = 10;
 	private final int ABOUTEXT_WIDTH = 416;

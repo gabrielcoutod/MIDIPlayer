@@ -42,6 +42,7 @@ import symbol.VolumeAlteration;
 
 // Class for the main application window
 public class MainWindow {
+	
 	// Size of font
 	private final int FONTSIZE = 12;
 	

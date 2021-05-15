@@ -14,17 +14,23 @@ import javax.swing.JTextArea;
 // Class for Help Window
 public class Help extends JFrame {
 	
+	// Size of font
 	private final int FONTSIZE = 12;
 	
+	// Coordinates for the elements
+	
+	// Help panel
 	private final int HELPPANEL_START_X = 100;
 	private final int HELPPANEL_START_Y = 100;
 	private final int HELPPANEL_WIDTH = 626;
 	private final int HELPPANEL_HEIGHT = 506;
-	
+
+	// Text panel
 	private final int TEXTPANEL_START_X = 10;
 	private final int TEXTPANEL_START_Y = 10;
 	private final int TEXTPANEL_WIDTH = 602;
 	private final int TEXTPANEL_HEIGHT = 438;
+	
 	// Help message
 	private static final String helpMessage = "No menu arquivo você pode abrir um arquivo de texto com uma música para o programa, salvar o texto atual ou salvar a música.\r\n"
 			+ "É possível inserir Modificações na música usando os botões para inserir Notas e inserir Opções, ou você pode inserir diretamente no formato de texto na caixa música, sendo os comandos disponíveis listados abaixo:\r\n"

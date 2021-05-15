@@ -5,7 +5,7 @@ import player.InputConverter;
 import player.TCPlayer;
 
 // Swing worker class for playing the song
-class MusicPlayer extends SwingWorker<Void, Void> {
+public class MusicPlayer extends SwingWorker<Void, Void> {
 
 	// Attributes
 	private boolean running = false;
