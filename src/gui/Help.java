@@ -39,8 +39,6 @@ public class Help extends JFrame {
 			+ "(Letra E maiúscula): Nota Mi\r\n" + "(Letra F maiúscula): Nota Fá\r\n"
 			+ "(Letra G maiúscula): Nota Sol\r\n" + "(Letra P maiúscula): Silêncio ou pausa\r\n"
 			+ "(Letra R maiúscula): Toca uma nota aleatória (de A a G), randomicamente escolhida\r\n"
-			+ "Letras a,b,c,d,e,f,g minúsculas: Se caractere anterior era NOTA (A a G), repete nota; Caso contrário, silêncio ou pausa\r\n"
-			+ "Qualquer outra letra consoante (todas consoantes exceto as que são notas): Se caractere anterior era NOTA (A a G), repete nota; Caso contrário, silêncio ou pausa\r\n"
 			+ "\r\n" + "BPM+: Aumenta BPM em 50 unidades\r\n" + "BPM-: Diminui BPM em 50 unidades\r\n"
 			+ "Caracteres T+ (letra T seguida de sinal de adição): Aumenta uma oitava\r\n"
 			+ "Caracteres T- (letra T seguida de sinal de subtração): Diminui uma oitava\r\n"
