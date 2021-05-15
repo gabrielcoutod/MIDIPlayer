@@ -12,9 +12,6 @@ import symbol.OctaveIncrementAlteration;
 import symbol.Symbol;
 import symbol.VolumeAlteration;
 import symbol.VolumeDoubleAlteration;
-
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 // Tests for the InputConverter

@@ -1,8 +1,6 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -23,31 +21,19 @@ import javax.swing.JSlider;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
-
 import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.event.ChangeEvent;
-import gui.Help;
-import gui.About;
 import player.InputConverter;
 import player.TCPlayer;
 import symbol.BPMAlteration;
@@ -58,6 +44,8 @@ import symbol.VolumeAlteration;
 public class MainWindow {
 	// Size of font
 	private final int FONTSIZE = 12;
+	
+	
 	// Coordinates for the elements
 	
 	// Window

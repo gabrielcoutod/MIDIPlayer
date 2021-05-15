@@ -1,7 +1,6 @@
 package gui;
 
 import javax.swing.SwingWorker;
-
 import player.InputConverter;
 import player.TCPlayer;
 

@@ -2,18 +2,13 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import java.awt.Font;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
-import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;
 
 // Class for Help Window

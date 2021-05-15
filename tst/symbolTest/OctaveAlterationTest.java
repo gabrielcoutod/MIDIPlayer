@@ -1,9 +1,7 @@
 package symbolTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import player.Octave;
 import player.TCPlayer;
 import symbol.OctaveAlteration;
