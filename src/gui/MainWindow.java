@@ -56,7 +56,162 @@ import symbol.VolumeAlteration;
 
 // Class for the main application window
 public class MainWindow {
+	// Size of font
+	private final int FONTSIZE = 12;
+	// Coordinates for the elements
+	
+	// Window
+	private final int WINDOW_START_X = 100;
+	private final int WINDOW_START_Y = 100;
+	private final int WINDOW_WIDTH = 914;
+	private final int WINDOW_HEIGHT = 531;
 
+	
+	// Main panel
+	private final int MAINPANEL_START_X = 10;
+	private final int MAINPANEL_START_Y = 10;
+	private final int MAINPANEL_WIDTH = 875;
+	private final int MAINPANEL_HEIGHT = 474;
+	
+	// Size of sliders
+	private final int SLIDER_WIDTH = 200;
+	private final int SLIDER_HEIGHT = 22;
+	
+	// Notes panel
+	private final int NOTESPANEL_START_X = 0;
+	private final int NOTESPANEL_START_Y = 32;
+	private final int NOTESPANEL_WIDTH = 184;
+	private final int NOTESPANEL_HEIGHT = 432;
+	
+
+	private final int NOTELABEL_START_X = 10;
+	private final int NOTELABEL_START_Y = 10;
+	private final int NOTELABEL_WIDTH = 62;
+	private final int NOTELABEL_HEIGHT = 23;
+	
+	private final int NOTEBUTTON_START_X = 27;
+	private final int NOTEBUTTON_START_Y = 381;
+	private final int NOTEBUTTON_WIDTH = 124;
+	private final int NOTEBUTTON_HEIGHT = 29;
+	
+	private final int NOTECHECKBOX_START_X = 10;
+	private final int NOTECHECKBOX_START_Y = 39;
+	private final int NOTECHECKBOX_WIDTH = 100;
+	private final int NOTECHECKBOX_HEIGHT = 21;
+	private final int NOTECHECKBOX_DISTANCE = 30;
+	
+	// Options Panel
+	private final int OPTIONSPANEL_START_X = 194;
+	private final int OPTIONSPANEL_START_Y = 32;
+	private final int OPTIONSPANEL_WIDTH = 228;
+	private final int OPTIONSPANEL_HEIGHT = 432;
+	
+
+	private final int OPTIONSLABEL_START_X = 10;
+	private final int OPTIONSLABEL_START_Y = 10;
+	private final int OPTIONSLABEL_WIDTH = 62;
+	private final int OPTIONSLABEL_HEIGHT = 23;
+	
+
+	private final int UPDATEBUTTON_START_X = 39;
+	private final int UPDATEBUTTON_START_Y = 381;
+	private final int UPDATEBUTTON_WIDTH = 124;
+	private final int UPDATEBUTTON_HEIGHT = 29;
+	
+	// BPM
+	private final int BPMLABEL_START_X = 10;
+	private final int BPMLABEL_START_Y = 46;
+	private final int BPMLABEL_WIDTH = 46;
+	private final int BPMLABEL_HEIGHT = 23;
+	
+	private final int BPMVALUE_START_X = 40;
+	private final int BPMVALUE_START_Y = 46;
+	private final int BPMVALUE_WIDTH = 46;
+	private final int BPMVALUE_HEIGHT = 23;
+	
+	private final int BPMSLIDER_START_X = 10;
+	private final int BPMSLIDER_START_Y = 69;
+	
+	
+	// Octave
+	private final int OCTAVELABEL_START_X = 10;
+	private final int OCTAVELABEL_START_Y = 108;
+	private final int OCTAVELABEL_WIDTH = 55;
+	private final int OCTAVELABEL_HEIGHT = 23;
+	
+	private final int OCTAVEVALUE_START_X = 50;
+	private final int OCTAVEVALUE_START_Y = 108;
+	private final int OCTAVEVALUE_WIDTH = 55;
+	private final int OCTAVEVALUE_HEIGHT = 23;
+
+
+	private final int OCTAVESLIDER_START_X = 10;
+	private final int OCTAVESLIDER_START_Y = 141;
+	
+	// Volume
+	private final int VOLUMELABEL_START_X = 10;
+	private final int VOLUMELABEL_START_Y = 173;
+	private final int VOLUMELABEL_WIDTH = 62;
+	private final int VOLUMELABEL_HEIGHT = 23;
+	
+	private final int VOLUMEVALUE_START_X = 56;
+	private final int VOLUMEVALUE_START_Y = 173;
+	private final int VOLUMEVALUE_WIDTH = 62;
+	private final int VOLUMEVALUE_HEIGHT = 23;
+
+	private final int VOLUMESLIDER_START_X = 10;
+	private final int VOLUMESLIDER_START_Y = 201;
+	
+	// Instrument
+	private final int INSTRUMENTSLABEL_START_X = 10;
+	private final int INSTRUMENTSLABEL_START_Y = 260;
+	private final int INSTRUMENTSLABEL_WIDTH = 77;
+	private final int INSTRUMENTSLABEL_HEIGHT = 23;
+	
+	private final int INSTRUMENTSCOMBOBOX_START_X = 97;
+	private final int INSTRUMENTSCOMBOBOX_START_Y = 261;
+	private final int INSTRUMENTSCOMBOBOX_WIDTH = 113;
+	private final int INSTRUMENTSCOMBOBOX_HEIGHT = 23;
+	
+	
+	// Song Panel
+
+	private final int SONGPANEL_START_X = 432;
+	private final int SONGPANEL_START_Y = 32;
+	private final int SONGPANEL_WIDTH = 443;
+	private final int SONGPANEL_HEIGHT = 432;
+	
+	private final int SONGLABEL_START_X = 10;
+	private final int SONGLABEL_START_Y = 10;
+	private final int SONGLABEL_WIDTH = 60;
+	private final int SONGLABEL_HEIGHT = 23;
+	
+	private final int SONGTEXT_START_X = 10;
+	private final int SONGTEXT_START_Y = 43;
+	private final int SONGTEXT_WIDTH = 297;
+	private final int SONGTEXT_HEIGHT = 379;
+	
+	private final int PLAYBUTTON_START_X = 328;
+	private final int PLAYBUTTON_START_Y = 61;
+	private final int PLAYBUTTON_WIDTH = 85;
+	private final int PLAYBUTTON_HEIGHT = 36;
+	
+	private final int CLEARBUTTON_START_X = 328;
+	private final int CLEARBUTTON_START_Y = 123;
+	private final int CLEARBUTTON_WIDTH = 85;
+	private final int CLEARBUTTON_HEIGHT = 36;
+	
+	// Menu bar
+	private final int MENUBAR_START_X = 60;
+	private final int MENUBAR_START_Y = 0;
+	private final int MENUBAR_WIDTH = 120;
+	private final int MENUBAR_HEIGHT = 22;
+	
+	private final int FILEMENU_START_X = 0;
+	private final int FILEMENU_START_Y = 0;
+	private final int FILEMENU_WIDTH = 60;
+	private final int FILEMENU_HEIGHT = 22;
+	
 	// Interface components
 	private JFrame frame = new JFrame("MIDI Player");
 	private JPanel panel = new JPanel();
@@ -78,7 +233,7 @@ public class MainWindow {
 	private JCheckBox checkBoxG = new JCheckBox("G");
 	private JCheckBox checkBoxA = new JCheckBox("A");
 	private JCheckBox checkBoxB = new JCheckBox("B");
-	private JCheckBox checkBoxRandom = new JCheckBox("Aleat\u00F3ria");
+	private JCheckBox checkBoxRandom = new JCheckBox("Aleatória");
 	private JCheckBox checkBoxPause = new JCheckBox("Pausa");
 	private JButton btnAddNote = new JButton("Adicionar");
 	private JMenu fileMenu = new JMenu("Arquivo");
@@ -116,7 +271,7 @@ public class MainWindow {
 	
 	// Initializes frame
 	private void initFrame() {
-		frame.setBounds(100, 100, 914, 531);
+		frame.setBounds(WINDOW_START_X, WINDOW_START_Y, WINDOW_WIDTH, WINDOW_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 	}
@@ -124,24 +279,24 @@ public class MainWindow {
 	// Initializes panel
 	private void initPanel() {
 		panel.setLayout(null);
-		panel.setBounds(10, 10, 875, 474);
+		panel.setBounds(MAINPANEL_START_X, MAINPANEL_START_Y, MAINPANEL_WIDTH, MAINPANEL_HEIGHT);
 		frame.getContentPane().add(panel);
 	}
 	
 	// Initializes notes panel
 	private void initNotesPanel() {
 		notesPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		notesPanel.setBounds(0, 32, 184, 432);
+		notesPanel.setBounds(NOTESPANEL_START_X, NOTESPANEL_START_Y, NOTESPANEL_WIDTH, NOTESPANEL_HEIGHT);
 		panel.add(notesPanel);
 		notesPanel.setLayout(null);
 
 		JLabel lblNotes = new JLabel("Nota");
-		lblNotes.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		lblNotes.setBounds(10, 10, 62, 23);
+		lblNotes.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblNotes.setBounds(NOTELABEL_START_X, NOTELABEL_START_Y, NOTELABEL_WIDTH, NOTELABEL_HEIGHT);
 		notesPanel.add(lblNotes);
 
-		btnAddNote.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		btnAddNote.setBounds(27, 381, 124, 29);
+		btnAddNote.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		btnAddNote.setBounds(NOTEBUTTON_START_X, NOTEBUTTON_START_Y, NOTEBUTTON_WIDTH, NOTEBUTTON_HEIGHT);
 		notesPanel.add(btnAddNote);
 
 		List<JCheckBox> checkBoxNotes = new ArrayList<JCheckBox>();
@@ -155,10 +310,10 @@ public class MainWindow {
 		checkBoxNotes.add(checkBoxPause);
 		checkBoxNotes.add(checkBoxRandom);
 		
-		int currentY = 39;
+		int currentY = NOTECHECKBOX_START_Y;
 		for (JCheckBox note: checkBoxNotes) {
-			note.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-			note.setBounds(10, currentY, 100, 21);
+			note.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+			note.setBounds(NOTECHECKBOX_START_X, currentY, NOTECHECKBOX_WIDTH, NOTECHECKBOX_HEIGHT);
 			note.addActionListener(new ActionListener() {
 
 				@Override
@@ -170,25 +325,25 @@ public class MainWindow {
 				}
 			});
 			notesPanel.add(note);
-			currentY += 30;
+			currentY += NOTECHECKBOX_DISTANCE;
 		}
 	}
 
 	// Initializes options panel
 	private void initOptionsPanel() {
 		optionsPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		optionsPanel.setBounds(194, 32, 228, 432);
+		optionsPanel.setBounds(OPTIONSPANEL_START_X, OPTIONSPANEL_START_Y, OPTIONSPANEL_WIDTH, OPTIONSPANEL_HEIGHT);
 		panel.add(optionsPanel);
 		optionsPanel.setLayout(null);
 
 
-		JLabel lblOptions = new JLabel("Op\u00E7\u00F5es");
-		lblOptions.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		lblOptions.setBounds(10, 10, 62, 23);
+		JLabel lblOptions = new JLabel("Opções");
+		lblOptions.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblOptions.setBounds(OPTIONSLABEL_START_X, OPTIONSLABEL_START_Y, OPTIONSLABEL_WIDTH, OPTIONSLABEL_HEIGHT);
 		optionsPanel.add(lblOptions);
 		
-		btnUpdate.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		btnUpdate.setBounds(39, 381, 124, 29);
+		btnUpdate.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		btnUpdate.setBounds(UPDATEBUTTON_START_X, UPDATEBUTTON_START_Y, UPDATEBUTTON_WIDTH, UPDATEBUTTON_HEIGHT);
 		optionsPanel.add(btnUpdate);
 		
 		initBPMSlider();
@@ -200,14 +355,14 @@ public class MainWindow {
 	// Initializes BPM options
 	private void initBPMSlider(){
 		JLabel lblBPM = new JLabel("BPM");
-		lblBPM.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblBPM.setBounds(10, 46, 46, 23);
+		lblBPM.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblBPM.setBounds(BPMLABEL_START_X, BPMLABEL_START_Y, BPMLABEL_WIDTH, BPMLABEL_HEIGHT);
 		optionsPanel.add(lblBPM);
 
 		JLabel lblBPMValue = new JLabel("");
 		lblBPMValue.setLabelFor(sliderBPM);
-		lblBPMValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblBPMValue.setBounds(40, 46, 46, 23);
+		lblBPMValue.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblBPMValue.setBounds(BPMVALUE_START_X, BPMVALUE_START_Y, BPMVALUE_WIDTH, BPMVALUE_HEIGHT);
 		lblBPMValue.setText(Integer.toString(sliderBPM.getValue()));
 		optionsPanel.add(lblBPMValue);
 
@@ -227,7 +382,7 @@ public class MainWindow {
 		sliderBPM.setMaximum(BPMAlteration.positiveAlteration);
 		sliderBPM.setMajorTickSpacing(BPMAlteration.alteration);
 		sliderBPM.setSnapToTicks(true);
-		sliderBPM.setBounds(10, 69, 200, 22);
+		sliderBPM.setBounds(BPMSLIDER_START_X, BPMSLIDER_START_Y, SLIDER_WIDTH, SLIDER_HEIGHT);
 		optionsPanel.add(sliderBPM);
 	}
 	
@@ -235,14 +390,14 @@ public class MainWindow {
 	private void initOctaveSlider(){
 		JLabel lblOctaveValue = new JLabel("");
 		lblOctaveValue.setLabelFor(sliderOctave);
-		lblOctaveValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblOctaveValue.setBounds(50, 108, 55, 23);
+		lblOctaveValue.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblOctaveValue.setBounds(OCTAVEVALUE_START_X, OCTAVEVALUE_START_Y, OCTAVEVALUE_WIDTH, OCTAVEVALUE_HEIGHT);
 		lblOctaveValue.setText(Integer.toString(sliderOctave.getValue()));
 		optionsPanel.add(lblOctaveValue);
 
 		JLabel lblOctave = new JLabel("Oitava");
-		lblOctave.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblOctave.setBounds(10, 108, 55, 23);
+		lblOctave.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblOctave.setBounds(OCTAVELABEL_START_X, OCTAVELABEL_START_Y, OCTAVELABEL_WIDTH, OCTAVELABEL_HEIGHT);
 		optionsPanel.add(lblOctave);
 
 		sliderOctave.addChangeListener(new ChangeListener() {
@@ -258,7 +413,7 @@ public class MainWindow {
 		sliderOctave.setValue(0);
 		sliderOctave.setMinimum(OctaveAlteration.negativeAlteration);
 		sliderOctave.setMaximum(OctaveAlteration.positiveAlteration);
-		sliderOctave.setBounds(10, 141, 200, 22);
+		sliderOctave.setBounds(OCTAVESLIDER_START_X, OCTAVESLIDER_START_Y, SLIDER_WIDTH, SLIDER_HEIGHT);
 		optionsPanel.add(sliderOctave);
 	}
 	
@@ -266,8 +421,10 @@ public class MainWindow {
 	private void initVolumeSlider(){
 		JLabel lblVolumeValue = new JLabel("");
 		lblVolumeValue.setLabelFor(sliderVolume);
-		lblVolumeValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblVolumeValue.setBounds(56, 173, 62, 23);
+		lblVolumeValue.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblVolumeValue.setBounds(VOLUMEVALUE_START_X, VOLUMEVALUE_START_Y, VOLUMEVALUE_WIDTH, VOLUMEVALUE_HEIGHT);
+
+		
 		lblVolumeValue.setText(Integer.toString(sliderVolume.getValue()));
 		optionsPanel.add(lblVolumeValue);
 
@@ -287,49 +444,52 @@ public class MainWindow {
 		sliderVolume.setMinimum(VolumeAlteration.negativeAlteration);
 		sliderVolume.setMajorTickSpacing(VolumeAlteration.alteration);
 		sliderVolume.setSnapToTicks(true);
-		sliderVolume.setBounds(10, 201, 200, 22);
+		sliderVolume.setBounds(VOLUMESLIDER_START_X, VOLUMESLIDER_START_Y, SLIDER_WIDTH, SLIDER_HEIGHT);
 		optionsPanel.add(sliderVolume);
 
 		JLabel lblVolume = new JLabel("Volume");
-		lblVolume.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblVolume.setBounds(10, 173, 62, 23);
+		lblVolume.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblVolume.setBounds(VOLUMELABEL_START_X, VOLUMELABEL_START_Y, VOLUMELABEL_WIDTH, VOLUMELABEL_HEIGHT);
+
+		
 		optionsPanel.add(lblVolume);
 	}
 	
 	// Initializes instrument options
 	private void initInstrumentsComboBox() {
 		JLabel lblInstruments = new JLabel("Instrumento");
-		lblInstruments.setFont(new Font("Noto Sans", Font.PLAIN, 12));
-		lblInstruments.setBounds(10, 260, 77, 23);
+		lblInstruments.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblInstruments.setBounds(INSTRUMENTSLABEL_START_X, INSTRUMENTSLABEL_START_Y, INSTRUMENTSLABEL_WIDTH, INSTRUMENTSLABEL_HEIGHT);
 		optionsPanel.add(lblInstruments);
 
 		comboBoxInstruments.setModel(
-				new DefaultComboBoxModel(new String[] {"Atual", "Piano", "Agogo", "Sinos", "Flauta", "\u00D3rg\u00E3o" }));
-		comboBoxInstruments.setBounds(97, 261, 113, 23);
+				new DefaultComboBoxModel(new String[] {"Atual", "Piano", "Agogo", "Sinos", "Flauta", "Órgão" }));
+		comboBoxInstruments.setBounds(INSTRUMENTSCOMBOBOX_START_X, INSTRUMENTSCOMBOBOX_START_Y, INSTRUMENTSCOMBOBOX_WIDTH, INSTRUMENTSCOMBOBOX_HEIGHT);
+	
 		optionsPanel.add(comboBoxInstruments);
 	}
 	
 	// Initializes music panel
 	private void initSongPanel() {
 		songPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		songPanel.setBounds(432, 32, 443, 432);
+		songPanel.setBounds(SONGPANEL_START_X, SONGPANEL_START_Y, SONGPANEL_WIDTH, SONGPANEL_HEIGHT);
 		panel.add(songPanel);
 		songPanel.setLayout(null);
 
 		JLabel lblSong = new JLabel("M\u00FAsica");
-		lblSong.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		lblSong.setBounds(10, 10, 62, 23);
+		lblSong.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		lblSong.setBounds(SONGLABEL_START_X, SONGLABEL_START_Y, SONGLABEL_WIDTH, SONGLABEL_HEIGHT);		
 		songPanel.add(lblSong);
 
 		JScrollPane songTextPane = new JScrollPane();
 		songTextPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		songTextPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		songTextPane.setBounds(10, 43, 297, 379);
+		songTextPane.setBounds(SONGTEXT_START_X, SONGTEXT_START_Y, SONGTEXT_WIDTH, SONGTEXT_HEIGHT);
 		songPanel.add(songTextPane);
 
 		textSong.setLineWrap(true);
 		textSong.setWrapStyleWord(true);
-		textSong.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		textSong.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
 		songTextPane.setViewportView(textSong);
 		textSong.addInputMethodListener(null);
 		
@@ -342,8 +502,8 @@ public class MainWindow {
 	// initializes the play button
 	private void initButtonPlay() {
 		JButton btnPlaySong = new JButton("Tocar");
-		btnPlaySong.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		btnPlaySong.setBounds(328, 61, 85, 36);
+		btnPlaySong.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		btnPlaySong.setBounds(PLAYBUTTON_START_X, PLAYBUTTON_START_Y, PLAYBUTTON_WIDTH, PLAYBUTTON_HEIGHT);
 		songPanel.add(btnPlaySong);
 
 		MusicPlayerController controller = new MusicPlayerController();
@@ -366,8 +526,8 @@ public class MainWindow {
 				textSong.setText("");
 			}
 		});
-		btnClean.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		btnClean.setBounds(328, 123, 85, 36);
+		btnClean.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
+		btnClean.setBounds(CLEARBUTTON_START_X, CLEARBUTTON_START_Y, CLEARBUTTON_WIDTH, CLEARBUTTON_HEIGHT);
 		songPanel.add(btnClean);
 	}
 	
@@ -441,8 +601,8 @@ public class MainWindow {
 	// Initializes menu bar
 	private void initMenuBar() {
 		JMenuBar fileMenuBar = new JMenuBar();
-		fileMenuBar.setBounds(0, 0, 60, 22);
-		menuBar.setBounds(60, 0,120, 22);
+		fileMenuBar.setBounds(FILEMENU_START_X, FILEMENU_START_Y, FILEMENU_WIDTH, FILEMENU_HEIGHT);
+		menuBar.setBounds(MENUBAR_START_X, MENUBAR_START_Y, MENUBAR_WIDTH, MENUBAR_HEIGHT);
 		panel.add(fileMenuBar);
 		panel.add(menuBar);
 
@@ -537,8 +697,8 @@ public class MainWindow {
 						}
 					} else {
 						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
-								"Arquivo jï¿½ existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-								new String[] { "Sim", "Nï¿½o", }, null);
+								"Arquivo já existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+								new String[] { "Sim", "Não", }, null);
 						if (response == 0) {
 							try (BufferedWriter bw = new BufferedWriter(
 									new FileWriter(file.getAbsoluteFile(), false))) {
@@ -556,7 +716,7 @@ public class MainWindow {
 	
 	// Initializes the save music button
 	private void initSaveMusic() {
-		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar m\u00FAsica");
+		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar música");
 		fileMenu.add(menuItemSaveMidi);
 		JFileChooser MIDIfileChooser = new JFileChooser();
 		MIDIfileChooser.setCurrentDirectory(new File("."));
@@ -588,8 +748,8 @@ public class MainWindow {
 						}
 					} else {
 						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
-								"Arquivo jï¿½ existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-								new String[] { "Sim", "Nï¿½o", }, null);
+								"Arquivo já existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+								new String[] { "Sim", "Não", }, null);
 						if (response == 0) {
 							try (FileOutputStream stream = new FileOutputStream(file)) {
 								new TCPlayer().save(InputConverter.convert(textSong.getText()), stream);

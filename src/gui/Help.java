@@ -18,7 +18,18 @@ import javax.swing.JTextArea;
 
 // Class for Help Window
 public class Help extends JFrame {
-
+	
+	private final int FONTSIZE = 12;
+	
+	private final int HELPPANEL_START_X = 100;
+	private final int HELPPANEL_START_Y = 100;
+	private final int HELPPANEL_WIDTH = 626;
+	private final int HELPPANEL_HEIGHT = 506;
+	
+	private final int TEXTPANEL_START_X = 10;
+	private final int TEXTPANEL_START_Y = 10;
+	private final int TEXTPANEL_WIDTH = 602;
+	private final int TEXTPANEL_HEIGHT = 438;
 	// Help message
 	private static final String helpMessage = "No menu arquivo você pode abrir um arquivo de texto com uma música para o programa, salvar o texto atual ou salvar a música.\r\n"
 			+ "É possível inserir Modificações na música usando os botões para inserir Notas e inserir Opções, ou você pode inserir diretamente no formato de texto na caixa música, sendo os comandos disponíveis listados abaixo:\r\n"
@@ -67,10 +78,10 @@ public class Help extends JFrame {
 	// Create frame
 	public Help() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 626, 506);
-
+		setBounds(HELPPANEL_START_X, HELPPANEL_START_Y, HELPPANEL_WIDTH, HELPPANEL_HEIGHT);
+		
 		JTextArea txtHelp = new JTextArea();
-		txtHelp.setFont(new Font("Noto Sans", Font.PLAIN, 12));
+		txtHelp.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
 		txtHelp.setBackground(UIManager.getColor("ScrollBar.foreground"));
 		txtHelp.setText(helpMessage);
 		txtHelp.setEditable(false);
@@ -80,10 +91,12 @@ public class Help extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(txtHelp, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setViewportBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		scrollPane.setBounds(10, 10, 602, 438);
+		scrollPane.setBounds(TEXTPANEL_START_X, TEXTPANEL_START_Y, TEXTPANEL_WIDTH, TEXTPANEL_HEIGHT);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(scrollPane);
