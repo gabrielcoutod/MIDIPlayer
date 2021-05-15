@@ -462,7 +462,7 @@ public class MainWindow {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File("."));
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("TXT files (*.txt)", "txt");
+		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Arquivos TXT (*.txt)", "txt");
 		fileChooser.setFileFilter(extFilter);
 		
 		JMenuItem menuItemOpenTextFile = new JMenuItem("Abrir arquivo de texto");
@@ -490,7 +490,7 @@ public class MainWindow {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File("."));
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("TXT files (*.txt)", "txt");
+		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("Arquivos TXT (*.txt)", "txt");
 		fileChooser.setFileFilter(extFilter);
 		
 		JMenuItem menuItemSaveTextFile = new JMenuItem("Salvar em arquivo de texto");
@@ -523,8 +523,8 @@ public class MainWindow {
 							}
 						} else {
 							int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
-									"Arquivo j� existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-									new String[] { "Sim", "N�o", }, null);
+									"Arquivo já existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+									new String[] { "Sim", "Não", }, null);
 							if (response == 0) {
 								try (BufferedWriter bw = new BufferedWriter(
 										new FileWriter(file.getAbsoluteFile(), false))) {
@@ -537,8 +537,8 @@ public class MainWindow {
 						}
 					} else {
 						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
-								"Arquivo j� existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-								new String[] { "Sim", "N�o", }, null);
+								"Arquivo já existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+								new String[] { "Sim", "Não", }, null);
 						if (response == 0) {
 							try (BufferedWriter bw = new BufferedWriter(
 									new FileWriter(file.getAbsoluteFile(), false))) {
@@ -561,7 +561,7 @@ public class MainWindow {
 		JFileChooser MIDIfileChooser = new JFileChooser();
 		MIDIfileChooser.setCurrentDirectory(new File("."));
 		MIDIfileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		FileNameExtensionFilter MIDIFilter = new FileNameExtensionFilter("MIDI files (*.midi)", "midi");
+		FileNameExtensionFilter MIDIFilter = new FileNameExtensionFilter("Arquivos MIDI (*.midi)", "midi");
 		MIDIfileChooser.setAcceptAllFileFilterUsed(false);
 		MIDIfileChooser.setFileFilter(MIDIFilter);
 		menuItemSaveMidi.addActionListener(new ActionListener() {
@@ -588,8 +588,8 @@ public class MainWindow {
 						}
 					} else {
 						int response = JOptionPane.showOptionDialog(new JFrame(), "Sobrescrever arquivo?",
-								"Arquivo j� existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-								new String[] { "Sim", "N�o", }, null);
+								"Arquivo já existe", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+								new String[] { "Sim", "Não", }, null);
 						if (response == 0) {
 							try (FileOutputStream stream = new FileOutputStream(file)) {
 								new TCPlayer().save(InputConverter.convert(textSong.getText()), stream);
