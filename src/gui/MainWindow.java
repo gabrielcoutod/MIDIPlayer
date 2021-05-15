@@ -17,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingWorker;
 import javax.swing.border.EtchedBorder;
 import javax.swing.JCheckBox;
 import javax.swing.JSlider;
@@ -51,66 +50,42 @@ import gui.Help;
 import gui.About;
 import player.InputConverter;
 import player.TCPlayer;
+import symbol.BPMAlteration;
+import symbol.OctaveAlteration;
+import symbol.VolumeAlteration;
 
-class MusicPlayer extends SwingWorker<Void, Void> {
-
-	private boolean running = false;
-	private String text;
-
-	public MusicPlayer(String text) {
-		this.text = text;
-	}
-
-	public MusicPlayer() {
-		this.text = "";
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public boolean isRunning() {
-		return running;
-	}
-
-	@Override
-	protected Void doInBackground() throws Exception {
-		// TODO Auto-generated method stub
-		running = true;
-		new TCPlayer().play(InputConverter.convert(text));
-		return null;
-	}
-
-	@Override
-	protected void done() {
-		running = false;
-	}
-}
-
-class MusicPlayerController {
-	private MusicPlayer musicPlayer = new MusicPlayer();
-
-	public boolean isRunning() {
-		return musicPlayer.isRunning();
-	}
-
-	public void cancel(boolean mayInterruptIfRunning) {
-		musicPlayer.cancel(mayInterruptIfRunning);
-	}
-
-	public void execute(String text) {
-		musicPlayer = new MusicPlayer(text);
-		musicPlayer.execute();
-	}
-}
-
+// Class for the main application window
 public class MainWindow {
 
-	private JFrame frame;
+	// Interface components
+	private JFrame frame = new JFrame("MIDI Player");
+	private JPanel panel = new JPanel();
+	private JPanel notesPanel = new JPanel();
+	private JPanel optionsPanel = new JPanel();
+	private JPanel songPanel = new JPanel();
+	private JMenuBar menuBar = new JMenuBar();
+	private JTextArea textSong = new JTextArea();
+	private JSlider sliderBPM = new JSlider();
+	private JSlider sliderVolume = new JSlider();
+	private JSlider sliderOctave = new JSlider();
+	private JComboBox comboBoxInstruments = new JComboBox();
+	private String[] instrumentsArray = new String[] {"O", "!", "\n", ";", ","};
+	private JButton btnUpdate = new JButton("Atualizar");
+	private JCheckBox checkBoxC = new JCheckBox("C");
+	private JCheckBox checkBoxD = new JCheckBox("D");
+	private JCheckBox checkBoxE = new JCheckBox("E");
+	private JCheckBox checkBoxF = new JCheckBox("F");
+	private JCheckBox checkBoxG = new JCheckBox("G");
+	private JCheckBox checkBoxA = new JCheckBox("A");
+	private JCheckBox checkBoxB = new JCheckBox("B");
+	private JCheckBox checkBoxRandom = new JCheckBox("Aleat\u00F3ria");
+	private JCheckBox checkBoxPause = new JCheckBox("Pausa");
+	private JButton btnAddNote = new JButton("Adicionar");
+	private JMenu fileMenu = new JMenu("Arquivo");
+	private JMenuItem menuItemHelp = new JMenuItem("Ajuda");
+	private JMenuItem menuItemAbout = new JMenuItem("Sobre");
 
-	/**
-	 * Launch the application.
-	 */
+	// create window
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -124,32 +99,37 @@ public class MainWindow {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	// create frame
 	public MainWindow() {
 		initialize();
 	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
+	// initializes frame and its components
 	private void initialize() {
-		// Frame code
-
-		frame = new JFrame("MIDI Player");
+		initFrame();
+		initPanel();
+		initNotesPanel();
+		initOptionsPanel();
+		initSongPanel();
+		initMenuBar();
+	}
+	
+	// Initializes frame
+	private void initFrame() {
 		frame.setBounds(100, 100, 914, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		// Notes panel code
-
-		JPanel panel = new JPanel();
+	}
+	
+	// Initializes panel
+	private void initPanel() {
 		panel.setLayout(null);
 		panel.setBounds(10, 10, 875, 474);
 		frame.getContentPane().add(panel);
-
-		JPanel notesPanel = new JPanel();
+	}
+	
+	// Initializes notes panel
+	private void initNotesPanel() {
 		notesPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		notesPanel.setBounds(0, 32, 184, 432);
 		panel.add(notesPanel);
@@ -160,160 +140,42 @@ public class MainWindow {
 		lblNotes.setBounds(10, 10, 62, 23);
 		notesPanel.add(lblNotes);
 
-		JButton btnAddNote = new JButton("Adicionar");
 		btnAddNote.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnAddNote.setBounds(27, 381, 124, 29);
 		notesPanel.add(btnAddNote);
 
 		List<JCheckBox> checkBoxNotes = new ArrayList<JCheckBox>();
-
-		JCheckBox checkBoxC = new JCheckBox("C");
-		checkBoxC.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxC.setBounds(10, 39, 50, 21);
-		checkBoxC.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxC.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxC);
-		notesPanel.add(checkBoxC);
-
-		JCheckBox checkBoxD = new JCheckBox("D");
-		checkBoxD.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxD.setBounds(10, 65, 50, 21);
-		checkBoxD.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxD.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxD);
-		notesPanel.add(checkBoxD);
-
-		JCheckBox checkBoxE = new JCheckBox("E");
-		checkBoxE.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxE.setBounds(10, 97, 50, 21);
-		checkBoxE.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxE.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxE);
-		notesPanel.add(checkBoxE);
-
-		JCheckBox checkBoxF = new JCheckBox("F");
-		checkBoxF.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxF.setBounds(10, 131, 50, 21);
-		checkBoxF.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxF.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxF);
-		notesPanel.add(checkBoxF);
-
-		JCheckBox checkBoxG = new JCheckBox("G");
-		checkBoxG.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxG.setBounds(10, 162, 50, 21);
-		checkBoxG.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxG.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxG);
-		notesPanel.add(checkBoxG);
-
-		JCheckBox checkBoxA = new JCheckBox("A");
-		checkBoxA.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxA.setBounds(10, 192, 50, 21);
-		checkBoxA.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxA.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxA);
-		notesPanel.add(checkBoxA);
-
-		JCheckBox checkBoxB = new JCheckBox("B");
-		checkBoxB.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxB.setBounds(10, 222, 50, 21);
-		checkBoxB.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxB.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxB);
-		notesPanel.add(checkBoxB);
-
-		JCheckBox checkBoxRandom = new JCheckBox("Aleat\u00F3ria");
-		checkBoxRandom.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxRandom.setBounds(10, 252, 96, 21);
-		checkBoxRandom.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxRandom.setSelected(true);
-			}
-		});
-		checkBoxNotes.add(checkBoxRandom);
-		notesPanel.add(checkBoxRandom);
-
-		JCheckBox checkBoxPause = new JCheckBox("Pausa");
-		checkBoxPause.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		checkBoxPause.setBounds(10, 282, 78, 21);
-		checkBoxPause.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (JCheckBox checkBox : checkBoxNotes) {
-					checkBox.setSelected(false);
-				}
-				checkBoxPause.setSelected(true);
-			}
-		});
 		checkBoxNotes.add(checkBoxPause);
-		notesPanel.add(checkBoxPause);
+		checkBoxNotes.add(checkBoxRandom);
+		
+		int currentY = 39;
+		for (JCheckBox note: checkBoxNotes) {
+			note.setFont(new Font("Noto Sans", Font.PLAIN, 14));
+			note.setBounds(10, currentY, 100, 21);
+			note.addActionListener(new ActionListener() {
 
-		// Options Panel code
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					for (JCheckBox checkBox : checkBoxNotes) {
+						checkBox.setSelected(false);
+					}
+					note.setSelected(true);
+				}
+			});
+			notesPanel.add(note);
+			currentY += 30;
+		}
+	}
 
-		JPanel optionsPanel = new JPanel();
+	// Initializes options panel
+	private void initOptionsPanel() {
 		optionsPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		optionsPanel.setBounds(194, 32, 228, 432);
 		panel.add(optionsPanel);
@@ -324,15 +186,23 @@ public class MainWindow {
 		lblOptions.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		lblOptions.setBounds(10, 10, 62, 23);
 		optionsPanel.add(lblOptions);
-
-		// Labels and Slider for BPM
-
+		
+		btnUpdate.setFont(new Font("Noto Sans", Font.PLAIN, 14));
+		btnUpdate.setBounds(39, 381, 124, 29);
+		optionsPanel.add(btnUpdate);
+		
+		initBPMSlider();
+		initOctaveSlider();
+		initVolumeSlider();
+		initInstrumentsComboBox();
+	}
+	
+	// Initializes BPM options
+	private void initBPMSlider(){
 		JLabel lblBPM = new JLabel("BPM");
 		lblBPM.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblBPM.setBounds(10, 46, 46, 23);
 		optionsPanel.add(lblBPM);
-
-		JSlider sliderBPM = new JSlider();
 
 		JLabel lblBPMValue = new JLabel("");
 		lblBPMValue.setLabelFor(sliderBPM);
@@ -344,26 +214,25 @@ public class MainWindow {
 		sliderBPM.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				int change = sliderBPM.getValue();
-				boolean passedHalf = (change/(25 + 1) != 0);
+				boolean passedHalf = (change/(BPMAlteration.alteration/2 + 1) != 0);
 				if (!passedHalf) {
 					lblBPMValue.setText("atual");
 				} else {
-					lblBPMValue.setText(String.format("%+d", change/Math.abs(change) * 50));
+					lblBPMValue.setText(String.format("%+d", change/Math.abs(change) * BPMAlteration.alteration));
 				}
 			}
 		});
 		sliderBPM.setValue(0);
-		sliderBPM.setMinimum(-50);
-		sliderBPM.setMaximum(50);
-		sliderBPM.setMajorTickSpacing(50);
+		sliderBPM.setMinimum(BPMAlteration.negativeAlteration);
+		sliderBPM.setMaximum(BPMAlteration.positiveAlteration);
+		sliderBPM.setMajorTickSpacing(BPMAlteration.alteration);
 		sliderBPM.setSnapToTicks(true);
 		sliderBPM.setBounds(10, 69, 200, 22);
 		optionsPanel.add(sliderBPM);
-
-		// Labels and Slider for Octave
-
-		JSlider sliderOctave = new JSlider();
-
+	}
+	
+	// Initializes octave options
+	private void initOctaveSlider(){
 		JLabel lblOctaveValue = new JLabel("");
 		lblOctaveValue.setLabelFor(sliderOctave);
 		lblOctaveValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
@@ -387,15 +256,14 @@ public class MainWindow {
 			}
 		});
 		sliderOctave.setValue(0);
-		sliderOctave.setMinimum(-1);
-		sliderOctave.setMaximum(1);
+		sliderOctave.setMinimum(OctaveAlteration.negativeAlteration);
+		sliderOctave.setMaximum(OctaveAlteration.positiveAlteration);
 		sliderOctave.setBounds(10, 141, 200, 22);
 		optionsPanel.add(sliderOctave);
-
-		// Labels and Slider for Volume
-
-		JSlider sliderVolume = new JSlider();
-
+	}
+	
+	// Initializes volume options
+	private void initVolumeSlider(){
 		JLabel lblVolumeValue = new JLabel("");
 		lblVolumeValue.setLabelFor(sliderVolume);
 		lblVolumeValue.setFont(new Font("Noto Sans", Font.PLAIN, 12));
@@ -406,18 +274,18 @@ public class MainWindow {
 		sliderVolume.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				int change = sliderVolume.getValue();
-				boolean passedHalf = (change/(5 + 1) != 0);
+				boolean passedHalf = (change/(VolumeAlteration.alteration/2 + 1) != 0);
 				if (!passedHalf) {
 					lblVolumeValue.setText("atual");
 				} else {
-					lblVolumeValue.setText(String.format("%+d", change/Math.abs(change) * 10));
+					lblVolumeValue.setText(String.format("%+d", change/Math.abs(change) * VolumeAlteration.alteration));
 				}
 			}
 		});
 		sliderVolume.setValue(0);
-		sliderVolume.setMaximum(10);
-		sliderVolume.setMinimum(-10);
-		sliderVolume.setMajorTickSpacing(10);
+		sliderVolume.setMaximum(VolumeAlteration.positiveAlteration);
+		sliderVolume.setMinimum(VolumeAlteration.negativeAlteration);
+		sliderVolume.setMajorTickSpacing(VolumeAlteration.alteration);
 		sliderVolume.setSnapToTicks(true);
 		sliderVolume.setBounds(10, 201, 200, 22);
 		optionsPanel.add(sliderVolume);
@@ -426,28 +294,23 @@ public class MainWindow {
 		lblVolume.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblVolume.setBounds(10, 173, 62, 23);
 		optionsPanel.add(lblVolume);
-
-		// Rest of the interface
-
-		JButton btnUpdate = new JButton("Atualizar");
-		btnUpdate.setFont(new Font("Noto Sans", Font.PLAIN, 14));
-		btnUpdate.setBounds(39, 381, 124, 29);
-		optionsPanel.add(btnUpdate);
-
+	}
+	
+	// Initializes instrument options
+	private void initInstrumentsComboBox() {
 		JLabel lblInstruments = new JLabel("Instrumento");
 		lblInstruments.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		lblInstruments.setBounds(10, 260, 77, 23);
 		optionsPanel.add(lblInstruments);
 
-		JComboBox comboBoxInstruments = new JComboBox();
 		comboBoxInstruments.setModel(
 				new DefaultComboBoxModel(new String[] {"Atual", "Piano", "Agogo", "Sinos", "Flauta", "\u00D3rg\u00E3o" }));
-		String[] instrumentsArray = {"O", "!", "\n", ";", ","};
 		comboBoxInstruments.setBounds(97, 261, 113, 23);
 		optionsPanel.add(comboBoxInstruments);
-
-		// Song panel code
-		JPanel songPanel = new JPanel();
+	}
+	
+	// Initializes music panel
+	private void initSongPanel() {
 		songPanel.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		songPanel.setBounds(432, 32, 443, 432);
 		panel.add(songPanel);
@@ -464,18 +327,25 @@ public class MainWindow {
 		songTextPane.setBounds(10, 43, 297, 379);
 		songPanel.add(songTextPane);
 
-		JTextArea textSong = new JTextArea();
 		textSong.setLineWrap(true);
 		textSong.setWrapStyleWord(true);
 		textSong.setFont(new Font("Noto Sans", Font.PLAIN, 12));
 		songTextPane.setViewportView(textSong);
 		textSong.addInputMethodListener(null);
-	
 		
+		initButtonPlay();
+		initButtonClean();
+		initButtonaddNote();
+		initButtonUpdate();
+	}
+
+	// initializes the play button
+	private void initButtonPlay() {
 		JButton btnPlaySong = new JButton("Tocar");
 		btnPlaySong.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnPlaySong.setBounds(328, 61, 85, 36);
 		songPanel.add(btnPlaySong);
+
 		MusicPlayerController controller = new MusicPlayerController();
 		btnPlaySong.addActionListener(new ActionListener() {
 
@@ -486,7 +356,10 @@ public class MainWindow {
 				}
 			}
 		});
-
+	}
+	
+	// Initializes the clean button
+	private void initButtonClean() {
 		JButton btnClean = new JButton("Limpar");
 		btnClean.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -496,7 +369,10 @@ public class MainWindow {
 		btnClean.setFont(new Font("Noto Sans", Font.PLAIN, 14));
 		btnClean.setBounds(328, 123, 85, 36);
 		songPanel.add(btnClean);
-
+	}
+	
+	// Initializes the add note button
+	private void initButtonaddNote() {
 		btnAddNote.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				if (checkBoxA.isSelected()) {
@@ -523,7 +399,10 @@ public class MainWindow {
 				}
 			}
 		});
-		
+	}
+	
+	// Initializes the update button
+	private void initButtonUpdate() {
 		btnUpdate.addActionListener(new ActionListener() {
 			
 			@Override
@@ -557,25 +436,35 @@ public class MainWindow {
 				
 			}
 		});
-
-		// Menu bar code
-
-		JMenuBar menuBar = new JMenuBar();
+	}
+	
+	// Initializes menu bar
+	private void initMenuBar() {
 		JMenuBar fileMenuBar = new JMenuBar();
 		fileMenuBar.setBounds(0, 0, 60, 22);
 		menuBar.setBounds(60, 0,120, 22);
 		panel.add(fileMenuBar);
 		panel.add(menuBar);
 
-		JMenu fileMenu = new JMenu("Arquivo");
 		fileMenuBar.add(fileMenu);
 		fileMenu.setUI(new JMenuItem("Arquivo").getUI());
+		
+		initOpenText();
+		initSaveText();
+		initSaveMusic();
+		initHelp();
+		initAbout();
+
+	}
+	
+	// Initializes the open text button
+	private void initOpenText() {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setCurrentDirectory(new File("."));
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("TXT files (*.txt)", "txt");
 		fileChooser.setFileFilter(extFilter);
-
+		
 		JMenuItem menuItemOpenTextFile = new JMenuItem("Abrir arquivo de texto");
 		fileMenu.add(menuItemOpenTextFile);
 		menuItemOpenTextFile.addActionListener(new ActionListener() {
@@ -594,7 +483,16 @@ public class MainWindow {
 				}
 			}
 		});
+	}
 
+	// Initializes the save text button
+	private void initSaveText() {
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File("."));
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		FileNameExtensionFilter extFilter = new FileNameExtensionFilter("TXT files (*.txt)", "txt");
+		fileChooser.setFileFilter(extFilter);
+		
 		JMenuItem menuItemSaveTextFile = new JMenuItem("Salvar em arquivo de texto");
 		fileMenu.add(menuItemSaveTextFile);
 		menuItemSaveTextFile.addActionListener(new ActionListener() {
@@ -654,7 +552,10 @@ public class MainWindow {
 				}
 			}
 		});
-
+	}
+	
+	// Initializes the save music button
+	private void initSaveMusic() {
 		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar m\u00FAsica");
 		fileMenu.add(menuItemSaveMidi);
 		JFileChooser MIDIfileChooser = new JFileChooser();
@@ -701,8 +602,10 @@ public class MainWindow {
 				}
 			}
 		});
-
-		JMenuItem menuItemHelp = new JMenuItem("Ajuda");
+	}
+	
+	// Initializes the help button
+	private void initHelp() {
 		menuItemHelp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Help helpWindow = new Help();
@@ -710,8 +613,10 @@ public class MainWindow {
 			}
 		});
 		menuBar.add(menuItemHelp);
-
-		JMenuItem menuItemAbout = new JMenuItem("Sobre");
+	}
+	
+	// Initializes the about button
+	private void initAbout() {
 		menuItemAbout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				About aboutWindow = new About();
