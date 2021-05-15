@@ -222,7 +222,7 @@ public class MainWindow {
 	private JCheckBox checkBoxG = new JCheckBox("G");
 	private JCheckBox checkBoxA = new JCheckBox("A");
 	private JCheckBox checkBoxB = new JCheckBox("B");
-	private JCheckBox checkBoxRandom = new JCheckBox("Aleat�ria");
+	private JCheckBox checkBoxRandom = new JCheckBox("Aleatória");
 	private JCheckBox checkBoxPause = new JCheckBox("Pausa");
 	private JButton btnAddNote = new JButton("Adicionar");
 	private JMenu fileMenu = new JMenu("Arquivo");
@@ -326,7 +326,7 @@ public class MainWindow {
 		optionsPanel.setLayout(null);
 
 
-		JLabel lblOptions = new JLabel("Op��es");
+		JLabel lblOptions = new JLabel("Opções");
 		lblOptions.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
 		lblOptions.setBounds(OPTIONSLABEL_START_X, OPTIONSLABEL_START_Y, OPTIONSLABEL_WIDTH, OPTIONSLABEL_HEIGHT);
 		optionsPanel.add(lblOptions);
@@ -452,7 +452,7 @@ public class MainWindow {
 		optionsPanel.add(lblInstruments);
 
 		comboBoxInstruments.setModel(
-				new DefaultComboBoxModel(new String[] {"Atual", "Piano", "Agogo", "Sinos", "Flauta", "�rg�o" }));
+				new DefaultComboBoxModel(new String[] {"Atual", "Piano", "Agogo", "Sinos", "Flauta", "Órgão" }));
 		comboBoxInstruments.setBounds(INSTRUMENTSCOMBOBOX_START_X, INSTRUMENTSCOMBOBOX_START_Y, INSTRUMENTSCOMBOBOX_WIDTH, INSTRUMENTSCOMBOBOX_HEIGHT);
 	
 		optionsPanel.add(comboBoxInstruments);
@@ -465,7 +465,7 @@ public class MainWindow {
 		panel.add(songPanel);
 		songPanel.setLayout(null);
 
-		JLabel lblSong = new JLabel("M\u00FAsica");
+		JLabel lblSong = new JLabel("Música");
 		lblSong.setFont(new Font("Noto Sans", Font.PLAIN, FONTSIZE));
 		lblSong.setBounds(SONGLABEL_START_X, SONGLABEL_START_Y, SONGLABEL_WIDTH, SONGLABEL_HEIGHT);		
 		songPanel.add(lblSong);
@@ -705,7 +705,7 @@ public class MainWindow {
 	
 	// Initializes the save music button
 	private void initSaveMusic() {
-		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar m�sica");
+		JMenuItem menuItemSaveMidi = new JMenuItem("Salvar música");
 		fileMenu.add(menuItemSaveMidi);
 		JFileChooser MIDIfileChooser = new JFileChooser();
 		MIDIfileChooser.setCurrentDirectory(new File("."));
